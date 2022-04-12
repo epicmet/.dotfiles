@@ -9,7 +9,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope.nvim'
 
-Plug 'ayu-theme/ayu-vim'
+Plug 'morhetz/gruvbox'
 
 Plug 'airblade/vim-gitgutter'
 
@@ -44,8 +44,7 @@ set signcolumn=yes
 
 set termguicolors     " enable true colors support
 "set modifiable
-let ayucolor="mirage"
-colorscheme ayu
+colorscheme gruvbox
 
 set updatetime=100
 let g:netrw_localrmdir='rm -rf' " Make netrw use 'rm -r' instead of 'rmdir'
