@@ -45,6 +45,7 @@ set signcolumn=yes
 set termguicolors     " enable true colors support
 "set modifiable
 colorscheme gruvbox
+set cul
 
 set updatetime=100
 let g:netrw_localrmdir='rm -rf' " Make netrw use 'rm -r' instead of 'rmdir'
