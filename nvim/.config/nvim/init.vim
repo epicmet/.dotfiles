@@ -60,6 +60,7 @@ augroup END
 " --Navigation & Remaps
 let mapleader = " "
 nnoremap <leader>pv :Vex<CR>
+nnoremap <leader>pt :Explore<CR>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>pf :Files<CR>
