@@ -47,7 +47,7 @@ On macOS, installing from brew should be fine. But on ubuntu if apt did not have
 1. Install these packages:
 
 ```bash
-libevent-dev ncurses-dev build-essential bison pkg-config make automake autotools-dev bison
+libevent-dev ncurses-dev build-essential bison pkg-config make automake autotools-dev bison autoconf
 ```
 
 2. Go to /use/locals
