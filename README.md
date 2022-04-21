@@ -4,7 +4,7 @@
 
 I use vim btw. 😎
 
-## Things you need to install be fore using these dotfiles
+## Things you need to install before using these dotfiles
 
 - [neovim](#neovim) (>=0.6)
 - [tmux](#tmux) (>=3.2)
