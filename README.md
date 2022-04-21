@@ -27,7 +27,7 @@ I use vim btw. 😎
 
 ## Actions
 
-- After installing tpm, use `prefix I` to install tmux packages.
+- After installing tpm, inside tmux use `prefix + I` to install tmux packages.
 - After installing neovim and vim plug, use :PlugInstall to install neovim packages.
 
 ### neovim
