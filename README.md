@@ -18,6 +18,13 @@ I use vim btw. 😎
 - [tmux-fzf](https://github.com/sainnhe/tmux-fzf)
 - [nerd font](#nerd-font) (firaCode or dank mono)
 
+## Usage
+1. Clone this repo on your home directory.
+
+2. Install all depenedencies based on instructions.
+
+3. Then based on your platform run `./ubuntu` or `./macOS`. It would stow the dotfiles on your home directory.
+
 ## Actions
 
 - After installing tpm, use `prefix I` to install tmux packages.
