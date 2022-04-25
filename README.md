@@ -13,12 +13,14 @@ I use vim btw. 😎
 - [stow](#stow)
 - [lua & luarocks](#lua)
 - [vim-plug](#vim-plug)
+  - [coc](#coc)
 - [tpm](https://github.com/tmux-plugins/tpm)
 - [fzf](#fzf) (>=0.23)
 - [tmux-fzf](https://github.com/sainnhe/tmux-fzf)
 - [nerd font](#nerd-font) (firaCode or dank mono)
 
 ## Usage
+
 1. Clone this repo on your home directory.
 
 2. Install all depenedencies based on instructions.
@@ -82,6 +84,10 @@ On macOS installing from brew should be fine but on ubuntu it's beter to clone f
 ### vim-plug
 
 Go to the [repo](https://github.com/junegunn/vim-plug) and install the Neovim version.
+
+#### coc
+
+Install your desired language server with `:CocInstall`. You can find language server list [here](https://github.com/neoclide/coc.nvim/wiki/Language-servers)
 
 ### nerd-font
 
