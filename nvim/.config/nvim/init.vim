@@ -26,6 +26,8 @@ Plug 'tpope/vim-commentary'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 
 Plug 'vim-airline/vim-airline'
+
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 " --require plugin config
