@@ -105,3 +105,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Key binding
+# TODO: Update this to go at the end of the line after search with this built-in functions: ending-of-line
+bindkey "^p" history-beginning-search-backward
+bindkey "^n" history-beginning-search-forward
