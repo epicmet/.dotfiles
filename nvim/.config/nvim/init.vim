@@ -28,6 +28,8 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --producti
 Plug 'vim-airline/vim-airline'
 
 Plug 'editorconfig/editorconfig-vim'
+
+Plug 'justinmk/vim-sneak'
 call plug#end()
 
 " --require plugin config
