@@ -30,6 +30,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'justinmk/vim-sneak'
+
+Plug 'vim-syntastic/syntastic'
 call plug#end()
 
 " --require plugin config
