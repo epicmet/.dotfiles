@@ -32,6 +32,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'justinmk/vim-sneak'
 
 Plug 'vim-syntastic/syntastic'
+
+Plug 'ThePrimeagen/harpoon'
 call plug#end()
 
 " --require plugin config
