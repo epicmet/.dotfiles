@@ -57,7 +57,7 @@ set cul
 
 set updatetime=100
 let g:netrw_localrmdir='rm -rf' " Make netrw use 'rm -r' instead of 'rmdir'
-let g:netrw_liststyle = 3
+let g:netrw_liststyle = 0
 let g:netrw_banner = 0
 
 augroup highlight_yank
