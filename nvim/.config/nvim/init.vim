@@ -25,6 +25,8 @@ Plug 'tpope/vim-commentary'
 
 Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+
 Plug 'vim-airline/vim-airline'
 
 Plug 'editorconfig/editorconfig-vim'
@@ -52,7 +54,8 @@ set signcolumn=yes
 
 set termguicolors     " enable true colors support
 "set modifiable
-colorscheme gruvbox
+colorscheme tokyonight
+let g:tokyonight_italic_functions = 1
 set cul
 
 set updatetime=100
