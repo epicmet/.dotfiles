@@ -22,6 +22,7 @@ telescope.setup {
     file_browser = {
       initial_mode = "normal",
       theme = "dropdown",
+      hidden = true,
       -- disables netrw and use telescope-file-browser in its place
       hijack_netrw = true,
       mappings = {
