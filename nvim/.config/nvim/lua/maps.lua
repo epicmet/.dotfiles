@@ -32,3 +32,6 @@ keymap.set('n', '<C-w><down>', '<C-w>-')
 -- Move lines
 keymap.set('v', 'J', ":m '>+1 <CR>gv=gv")
 keymap.set('v', 'K', ":m '<-2 <CR>gv=gv")
+
+-- Prettier
+keymap.set('n', '<leader>p', '<cmd>:Prettier<CR>')
