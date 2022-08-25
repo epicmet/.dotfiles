@@ -20,8 +20,12 @@ vim.keymap.set('n', '<leader>f', '<cmd>:Prettier<CR>')
 -- autocmd for auto format
 vim.g.auto_prettier = true
 
-vim.keymap.set('n', '<leader>pe', '<cmd>lua vim.g.auto_prettier = true<CR>')
-vim.keymap.set('n', '<leader>pd', '<cmd>lua vim.g.auto_prettier = false<CR>')
+vim.keymap.set('n', '<leader>pe',
+  '<cmd>lua vim.g.auto_prettier = true<CR><cmd>lua print("auto format with prettier `enabled`")<CR>'
+)
+vim.keymap.set('n', '<leader>pd',
+  '<cmd>lua vim.g.auto_prettier = false<CR><cmd>lua print("auto format with prettier `disabled`")<CR>'
+)
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup('ts-js-prettier-formater', { clear = true }),
