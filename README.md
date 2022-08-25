@@ -6,18 +6,21 @@ I use vim btw. 😎
 
 ## Things you need to install before using these dotfiles
 
-- [neovim](#neovim) (>=0.6)
-- [tmux](#tmux) (>=3.2)
-- [zsh](#zsh)
-- [oh my zsh](https://ohmyz.sh/)
-- [stow](#stow)
-- [lua & luarocks](#lua)
-- [vim-plug](#vim-plug)
-  - [coc](#coc)
-- [tpm](https://github.com/tmux-plugins/tpm)
-- [fzf](#fzf) (>=0.23)
-- [tmux-fzf](https://github.com/sainnhe/tmux-fzf)
-- [nerd font](#nerd-font) (firaCode or dank mono)
+- Main:
+  - [neovim](#neovim) (>=0.6)
+  - [tmux](#tmux) (>=3.2)
+  - [zsh](#zsh)
+  - [lua & luarocks](#lua)
+  - [stow](#stow)
+  - [fzf](#fzf) (>=0.23)
+- Tools:
+  - [oh my zsh](https://ohmyz.sh/)
+  - [packer](#packer)
+  - [tpm](https://github.com/tmux-plugins/tpm)
+  - [tmux-fzf](https://github.com/sainnhe/tmux-fzf)
+  - [fd](https://github.com/sharkdp/fd)
+  - [rg](https://github.com/BurntSushi/ripgrep)
+  - [nerd font](#nerd-font)
 
 ## Usage
 
@@ -30,11 +33,11 @@ I use vim btw. 😎
 ## Actions
 
 - After installing tpm, inside tmux use `prefix + I` to install tmux packages.
-- After installing neovim and vim plug, use :PlugInstall to install neovim packages.
+- After installing neovim and packer, use :PackerInstall to install neovim packages.
 
 ### neovim
 
-On macOS, installing from brew should be fine. But on ubuntu if apt did not have version 0.6 or above by the time, you can use snippet below. [Source](https://www.codegrepper.com/code-examples/shell/ubuntu+install+neovim+0.6)
+On macOS, installing from brew should be fine. But on ubuntu if apt did not have version 0.6 or above by the time, you can use snippet below. [Source](https://www.codegrepper.com/code-examples/shell/ubuntu+install+neovim+0.6). OR maybe build it from the source ?
 
 ```bash
 sudo add-apt-repository ppa:neovim-ppa/unstable
@@ -73,21 +76,15 @@ Install from apt or brew.
 
 ### lua
 
-It is not really required at the moment. But in future if you used LSP or wanted to write your own plugins, checkout this [site](https://lindevs.com/install-lua-from-source-code-on-ubuntu/), it will help you build lua from source.
-
-`note:` I hope I remember to edit this section when ever lua was really required :P
+If you have neovim installed, chances are you already have lua, also checkout this [site](https://lindevs.com/install-lua-from-source-code-on-ubuntu/), it will help you build lua from source.
 
 ### fzf
 
 On macOS installing from brew should be fine but on ubuntu it's beter to clone from the [repo](https://github.com/junegunn/fzf) and run install script.
 
-### vim-plug
+### packer
 
-Go to the [repo](https://github.com/junegunn/vim-plug) and install the Neovim version.
-
-#### coc
-
-Install your desired language server with `:CocInstall`. You can find language server list [here](https://github.com/neoclide/coc.nvim/wiki/Language-servers)
+Follow the instructions in this [repo](https://github.com/wbthomason/packer.nvim) and install it.
 
 ### nerd-font
 
