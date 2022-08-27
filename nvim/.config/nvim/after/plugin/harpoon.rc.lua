@@ -4,9 +4,9 @@ if (not status) then return end
 local status2, mark = pcall(require, 'harpoon.mark')
 if (not status2) then return end
 
-vim.keymap.set('n', '<leader>na', mark.add_file)
+vim.keymap.set('n', '<leader>a', mark.add_file)
 
-vim.keymap.set('n', '<leader>nv', ui.toggle_quick_menu)
+vim.keymap.set('n', '<leader>v', ui.toggle_quick_menu)
 -- TOOD: Make these calls dynamic to a remap, something like this:
 -- 2<leader>nf -> nav_file(2)
 vim.keymap.set('n', '<leader>1', function() ui.nav_file(1) end)
