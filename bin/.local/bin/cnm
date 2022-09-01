@@ -1,8 +1,7 @@
 #!/bin/bash
+
 find_dirs() {
   node_modules_dirs=$(find . -name "node_modules" -type d)
-
-  echo "$node_modules_dirs"
 }
 
 delete_dirs() {
@@ -11,6 +10,11 @@ delete_dirs() {
   done
 }
 
-find_dirs
+main() {
+  find_dirs &&
+  confirmed_dirs=$(gum choose --no-limit $node_modules_dirs) &&
+  echo "$confirmed_dirs" &&
+  gum confirm && delete_dirs "$confirmed_dirs"
+}
 
-gum confirm && delete_dirs "$node_modules_dirs"
+main
