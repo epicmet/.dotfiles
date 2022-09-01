@@ -20,6 +20,7 @@ I use vim btw. 😎
   - [tmux-fzf](https://github.com/sainnhe/tmux-fzf)
   - [fd](https://github.com/sharkdp/fd)
   - [rg](https://github.com/BurntSushi/ripgrep)
+  - [gum](https://github.com/charmbracelet/gum)
   - [nerd font](#nerd-font)
 
 ## Usage
