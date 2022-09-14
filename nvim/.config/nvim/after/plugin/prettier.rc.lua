@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   },
   callback = function()
     if vim.g.auto_prettier then
-      vim.api.nvim_command("Prettier<CR>")
+      vim.api.nvim_command("Prettier")
     end
   end
 })
