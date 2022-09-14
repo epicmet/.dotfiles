@@ -100,6 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # aliases
 alias vim='nvim'
 alias k='kubectl'
+alias 'xdg-open'='open'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
