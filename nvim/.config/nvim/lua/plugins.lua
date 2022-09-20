@@ -48,4 +48,6 @@ packer.startup(function(use)
   use 'tpope/vim-commentary'
 
   use 'MunifTanjim/eslint.nvim'
+
+  use 'xiyaowong/nvim-transparent'
 end)
