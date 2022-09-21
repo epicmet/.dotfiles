@@ -17,7 +17,6 @@ I use vim btw. 😎
   - [oh my zsh](https://ohmyz.sh/)
   - [packer](#packer)
   - [tpm](https://github.com/tmux-plugins/tpm)
-  - [tmux-fzf](https://github.com/sainnhe/tmux-fzf)
   - [fd](https://github.com/sharkdp/fd)
   - [rg](https://github.com/BurntSushi/ripgrep)
   - [gum](https://github.com/charmbracelet/gum)
