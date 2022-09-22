@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     "*.ts",
     "*.tsx",
     "*.js",
+    "*.cjs",
     "*.jsx",
     "*.html",
     "*.json",
