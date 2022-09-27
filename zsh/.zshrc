@@ -112,3 +112,5 @@ export NVM_DIR="$HOME/.nvm"
 # TODO: Update this to go at the end of the line after search with this built-in functions: ending-of-line
 bindkey "^p" history-beginning-search-backward
 bindkey "^n" history-beginning-search-forward
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
