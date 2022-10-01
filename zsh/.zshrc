@@ -41,9 +41,6 @@ export NVM_DIR="$HOME/.nvm" # nvm
 
 ### ohmyzsh setting https://github.com/ohmyzsh/ohmyzsh/wiki/Settings ###
 ZSH_THEME="robbyrussell" # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-zstyle ':omz:update' mode reminder  # remind me to update omz when it's time
-zstyle ':omz:update' frequency 7 # how often to auto-update (in days).
-COMPLETION_WAITING_DOTS="true" # display red dots whilst waiting for completion.
 # CASE_SENSITIVE="true" # case-sensitive completion.
 # HYPHEN_INSENSITIVE="true" # hyphen-insensitive completion. Case-sensitive completion must be off. _ and - will be interchangeable.
 # DISABLE_MAGIC_FUNCTIONS="true" # Uncomment if pasting URLs and other text is messed up.
