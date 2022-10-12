@@ -66,3 +66,5 @@ fi
 # TODO: Update this to go at the end of the line after search with this built-in functions: ending-of-line
 bindkey "^p" history-beginning-search-backward
 bindkey "^n" history-beginning-search-forward
+
+cfonts "here we go again" -f chrome -a center
