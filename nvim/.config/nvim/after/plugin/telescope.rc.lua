@@ -17,6 +17,16 @@ telescope.setup {
         ["q"] = actions.close
       },
     },
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--hidden",
+      "--smart-case"
+    },
   },
   extensions = {
     file_browser = {
