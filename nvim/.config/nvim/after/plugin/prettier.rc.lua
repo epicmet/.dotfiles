@@ -26,25 +26,3 @@ vim.keymap.set('n', '<leader>pe',
 vim.keymap.set('n', '<leader>pd',
   '<cmd>lua vim.g.auto_prettier = false<CR><cmd>lua print("auto format with prettier `disabled`")<CR>'
 )
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup('ts-js-prettier-formater', { clear = true }),
-  pattern = {
-    "*.ts",
-    "*.tsx",
-    "*.js",
-    "*.cjs",
-    "*.jsx",
-    "*.html",
-    "*.json",
-    "*.md",
-    "*.css",
-    "*.scss",
-    "*.yaml"
-  },
-  callback = function()
-    if vim.g.auto_prettier then
-      vim.api.nvim_command("Prettier")
-    end
-  end
-})
