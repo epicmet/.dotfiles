@@ -46,8 +46,6 @@ packer.startup(function(use)
 
   use 'tpope/vim-commentary'
 
-  use 'MunifTanjim/eslint.nvim'
-
   use 'xiyaowong/nvim-transparent'
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
