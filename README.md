@@ -18,6 +18,7 @@ I use vim btw. 😎
   - [packer](#packer)
   - [tpm](https://github.com/tmux-plugins/tpm)
   - [prettierd](https://github.com/fsouza/prettierd)
+  - [eslintd](https://github.com/mantoni/eslint_d.js)
   - [fd](https://github.com/sharkdp/fd)
   - [rg](https://github.com/BurntSushi/ripgrep)
   - [gum](https://github.com/charmbracelet/gum)
