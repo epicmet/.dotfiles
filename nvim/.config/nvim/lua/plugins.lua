@@ -49,4 +49,6 @@ packer.startup(function(use)
   use 'xiyaowong/nvim-transparent'
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
+  use 'ThePrimeagen/vim-be-good'
 end)
