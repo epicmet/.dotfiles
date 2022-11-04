@@ -52,4 +52,6 @@ packer.startup(function(use)
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   use 'ThePrimeagen/vim-be-good'
+
+  use 'simrat39/rust-tools.nvim'
 end)

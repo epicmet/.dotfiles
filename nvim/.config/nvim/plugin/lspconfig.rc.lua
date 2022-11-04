@@ -3,6 +3,9 @@
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
+local rt_status, rt = pcall(require, "rust-tools")
+if(not rt_status) then return end
+
 local protocol = require('vim.lsp.protocol')
 
 -- Use an on_attach function to only map the following keys
@@ -126,6 +129,18 @@ nvim_lsp.cssls.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
+
+-- nvim_lsp.rust_analyzer.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities
+-- }
+
+rt.setup({
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities
+  }
+})
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
