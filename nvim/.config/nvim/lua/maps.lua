@@ -10,7 +10,7 @@ keymap.set('n', '-', '<C-x>')
 keymap.set('n', '<C-a>', 'gg<S-v>G')
 
 -- New tab
-keymap.set('n', 'te', ':tabedit<Return>', { silent = true })
+keymap.set('n', '<leader>nt', ':tabedit<Return>', { silent = true })
 
 -- Split tab window
 keymap.set('n', 'ss', ':split<Return><C-w>w', { silent = true })
