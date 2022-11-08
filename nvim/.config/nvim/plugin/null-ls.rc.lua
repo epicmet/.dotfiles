@@ -4,11 +4,11 @@ if (not status) then return end
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 
 null_ls.setup {
-  sources = {
-    null_ls.builtins.diagnostics.eslint_d.with({
-      diagnostics_format = '[eslint] #{m}\n(#{c})'
-    })
-  },
+  -- sources = {
+  --   null_ls.builtins.diagnostics.eslint_d.with({
+  --     diagnostics_format = '[eslint] #{m}\n(#{c})'
+  --   })
+  -- },
   on_attach = function(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
       vim.keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>")
