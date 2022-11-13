@@ -31,6 +31,8 @@ packer.startup(function(use)
     run = ':TSUpdate'
   }
 
+  use 'nvim-treesitter/nvim-treesitter-context'
+
   use 'windwp/nvim-ts-autotag'
 
   use 'nvim-telescope/telescope.nvim'
