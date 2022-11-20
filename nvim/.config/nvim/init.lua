@@ -1,4 +1,5 @@
 require("base")
+require("global")
 require("highlights")
 require("maps")
 require("plugins")
