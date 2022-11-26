@@ -1,8 +1,17 @@
-local status, ui = pcall(require, 'harpoon.ui')
+local status, harpoon = pcall(require, 'harpoon')
 if (not status) then return end
 
-local status2, mark = pcall(require, 'harpoon.mark')
-if (not status2) then return end
+local status1, ui = pcall(require, 'harpoon.ui')
+if (not status1) then return end
+
+local status3, mark = pcall(require, 'harpoon.mark')
+if (not status3) then return end
+
+harpoon.setup({
+  menu = {
+    width = 100
+  }
+})
 
 vim.keymap.set('n', '<leader>a', mark.add_file)
 vim.keymap.set('n', '<leader>v', ui.toggle_quick_menu)
