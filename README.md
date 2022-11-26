@@ -98,7 +98,7 @@ Follow the instructions in this [repo](https://github.com/wbthomason/packer.nvim
 
 3. Change the font of your terminal to the font you installed.
 
-### yabai (macOS only)
+### yabai 
 1. Install `yabai` and `skhd` via `homebrew`.
 ```bash
   brew install yabai
