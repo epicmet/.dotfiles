@@ -13,6 +13,7 @@ I use vim btw. 😎
   - [lua & luarocks](#lua)
   - [stow](#stow)
   - [fzf](#fzf) (>=0.23)
+  - [yabai(on macOS)](#yabai)
 - Tools:
   - [oh my zsh](https://ohmyz.sh/)
   - [packer](#packer)
@@ -21,6 +22,7 @@ I use vim btw. 😎
   - [eslintd](https://github.com/mantoni/eslint_d.js)
   - [fd](https://github.com/sharkdp/fd)
   - [rg](https://github.com/BurntSushi/ripgrep)
+  - [jq](https://github.com/stedolan/jq)
   - [gum](https://github.com/charmbracelet/gum)
   - [nerd font](#nerd-font)
 
@@ -95,3 +97,20 @@ Follow the instructions in this [repo](https://github.com/wbthomason/packer.nvim
 2. In order to install click on the link for any font you chose. Generally it's something like: Go to Regular directory and find a complete directory and install the font on your system (otf versions are the best). OR follow the instruction on the readme of the font.
 
 3. Change the font of your terminal to the font you installed.
+
+### yabai (macOS only)
+1. Install `yabai` and `skhd` via `homebrew`.
+```bash
+  brew install yabai
+  brew install skhd
+```
+
+2. Start the service on background
+```bash
+  brew services start yabai
+  brew services start skhd
+```
+Both of these should be running. Check their status with this command.
+```bash
+  brew services list
+```
