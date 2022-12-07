@@ -58,4 +58,8 @@ packer.startup(function(use)
   use 'simrat39/rust-tools.nvim'
 
   use 'rcarriga/nvim-notify'
+
+  use 'tamton-aquib/zone.nvim'
+
+  use 'tamton-aquib/duck.nvim'
 end)
