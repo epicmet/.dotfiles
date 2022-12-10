@@ -35,3 +35,7 @@ keymap.set('v', 'K', ":m '<-2 <CR>gv=gv")
 
 -- Source the current file
 keymap.set('n', '<leader><CR>', '<cmd>so%<CR>')
+
+-- Put cursor on the center when navigating with Ctrl-u and Ctrl-d
+keymap.set('n', '<C-u>', '<C-u>zz')
+keymap.set('n', '<C-d>', '<C-d>zz')
