@@ -40,6 +40,7 @@ packer.startup(function(use)
   use 'akinsho/nvim-bufferline.lua'
 
   use 'jose-elias-alvarez/null-ls.nvim'
+  use 'jay-babu/mason-null-ls.nvim'
   use 'MunifTanjim/prettier.nvim'
 
   use 'ThePrimeagen/harpoon'
