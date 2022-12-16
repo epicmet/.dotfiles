@@ -1,4 +1,4 @@
-vim.cmd("autocmd!")
+vim.cmd('autocmd!')
 
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
@@ -26,18 +26,25 @@ vim.opt.breakindent = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.backspace = { 'start', 'eol', 'indent' }
-vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
-vim.opt.wildignore:append { '*/node_modules/*' }
+vim.opt.path:append({ '**' }) -- Finding files - Search down into subfolders
+vim.opt.wildignore:append({ '*/node_modules/*' })
 vim.opt.mouse = nil
 
 vim.g.mapleader = ' '
 
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
+vim.opt.undofile = true
+
+vim.opt.updatetime = 50
+
 vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Hightlight selection on yank',
-  pattern = '*',
-  callback = function()
-    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 50 }
-  end,
+	desc = 'Hightlight selection on yank',
+	pattern = '*',
+	callback = function()
+		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 50 })
+	end,
 })
 
 -- Undercurl
@@ -45,10 +52,10 @@ vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 -- Turn off paste mode when leaving insert
-vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = '*',
-  command = "set nopaste"
+vim.api.nvim_create_autocmd('InsertLeave', {
+	pattern = '*',
+	command = 'set nopaste',
 })
 
 -- Add asterisks in block comments
-vim.opt.formatoptions:append { 'r' }
+vim.opt.formatoptions:append({ 'r' })

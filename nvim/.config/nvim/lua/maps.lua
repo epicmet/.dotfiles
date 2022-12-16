@@ -39,3 +39,13 @@ keymap.set('n', '<leader><CR>', '<cmd>so%<CR>')
 -- Put cursor on the center when navigating with Ctrl-u and Ctrl-d
 keymap.set('n', '<C-u>', '<C-u>zz')
 keymap.set('n', '<C-d>', '<C-d>zz')
+
+-- Cursor stays on its position on J
+keymap.set('n', 'J', 'mzJ`z')
+
+-- When paste on visual mode, do not replace the deleted thing with the yank register
+keymap.set('x', '<leader>p', '"_dP')
+
+-- Delete to void register
+keymap.set('n', '<leader>d', '"_d')
+keymap.set('v', '<leader>d', '"_d')
