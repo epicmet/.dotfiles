@@ -76,6 +76,8 @@ packer.startup(function(use)
 
 	use('mbbill/undotree')
 
+	use('lukas-reineke/indent-blankline.nvim')
+
 	if packer_bootstrap then require('packer').sync() end
 end)
 
