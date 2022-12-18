@@ -1,18 +1,20 @@
 --vim.lsp.set_log_level("debug")
 
-local status, nvim_lsp = pcall(require, "lspconfig")
-if (not status) then return end
+local status, nvim_lsp = pcall(require, 'lspconfig')
+if not status then return end
 
-local rt_status, rt = pcall(require, "rust-tools")
-if(not rt_status) then return end
+local rt_status, rt = pcall(require, 'rust-tools')
+if not rt_status then return end
 
 local protocol = require('vim.lsp.protocol')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+  -- stylua: ignore
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
+  -- stylua: ignore
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   --Enable completion triggered by <c-x><c-o>
@@ -33,15 +35,23 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
 
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>cc', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
   -- formatting
   if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = vim.api.nvim_create_augroup("Format", { clear = true }),
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = vim.api.nvim_create_augroup('Format', { clear = true }),
       buffer = bufnr,
-      callback = function() vim.lsp.buf.format({ async = true }) end
+      callback = function()
+        if vim.lsp.buf.format then
+          vim.lsp.buf.format({ async = true })
+        elseif vim.lsp.buf.formatting then
+          vim.lsp.buf.formatting()
+        end
+      end,
     })
   end
 end
@@ -75,21 +85,19 @@ protocol.CompletionItemKind = {
 }
 
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = require('cmp_nvim_lsp').default_capabilities(
-  vim.lsp.protocol.make_client_capabilities()
-)
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-nvim_lsp.tsserver.setup {
+nvim_lsp.tsserver.setup({
   on_attach = on_attach,
-  cmd = { "typescript-language-server", "--stdio" },
-  capabilities = capabilities
-}
+  cmd = { 'typescript-language-server', '--stdio' },
+  capabilities = capabilities,
+})
 
-nvim_lsp.sourcekit.setup {
+nvim_lsp.sourcekit.setup({
   on_attach = on_attach,
-}
+})
 
-nvim_lsp.sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup({
   on_attach = on_attach,
   settings = {
     Lua = {
@@ -100,35 +108,35 @@ nvim_lsp.sumneko_lua.setup {
 
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false
+        library = vim.api.nvim_get_runtime_file('', true),
+        checkThirdParty = false,
       },
     },
   },
-}
+})
 
-nvim_lsp.tailwindcss.setup {}
+nvim_lsp.tailwindcss.setup({})
 
-nvim_lsp.gopls.setup {
+nvim_lsp.gopls.setup({
   on_attach = on_attach,
-  capabilities = capabilities
-}
+  capabilities = capabilities,
+})
 
-nvim_lsp.clangd.setup {
+nvim_lsp.clangd.setup({
   on_attach = on_attach,
-  capabilities = capabilities
-}
+  capabilities = capabilities,
+})
 
-nvim_lsp.bashls.setup {
+nvim_lsp.bashls.setup({
   on_attach = on_attach,
-  capabilities = capabilities
-}
+  capabilities = capabilities,
+})
 
-nvim_lsp.cssls.setup {
-  cmd = { "vscode-css-language-server", "--stdio" },
+nvim_lsp.cssls.setup({
+  cmd = { 'vscode-css-language-server', '--stdio' },
   on_attach = on_attach,
-  capabilities = capabilities
-}
+  capabilities = capabilities,
+})
 
 -- nvim_lsp.rust_analyzer.setup {
 --   on_attach = on_attach,
@@ -138,32 +146,30 @@ nvim_lsp.cssls.setup {
 rt.setup({
   server = {
     on_attach = on_attach,
-    capabilities = capabilities
-  }
+    capabilities = capabilities,
+  },
 })
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = true,
   update_in_insert = false,
-  virtual_text = { spacing = 4, prefix = "●" },
+  virtual_text = { spacing = 4, prefix = '●' },
   severity_sort = true,
-}
-)
+})
 
 -- Diagnostic symbols in the sign column (gutter)
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
 for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+  local hl = 'DiagnosticSign' .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
 end
 
 vim.diagnostic.config({
   virtual_text = {
-    prefix = '●'
+    prefix = '●',
   },
   update_in_insert = true,
   float = {
-    source = "always", -- Or "if_many"
+    source = 'always', -- Or "if_many"
   },
 })
