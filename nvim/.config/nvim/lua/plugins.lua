@@ -29,16 +29,22 @@ packer.startup(function(use)
 	use('hrsh7th/cmp-buffer')
 	use('hrsh7th/cmp-nvim-lsp')
 	use('hrsh7th/nvim-cmp')
-	use('neovim/nvim-lspconfig')
+	use({
+		'neovim/nvim-lspconfig',
+		requires = { 'j-hui/fidget.nvim' },
+	})
 	use('williamboman/mason.nvim')
 	use('williamboman/mason-lspconfig.nvim')
-	-- use 'glepnir/lspsaga.nvim'
+
 	use({
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate',
 	})
-
 	use('nvim-treesitter/nvim-treesitter-context')
+	use({
+		'nvim-treesitter/nvim-treesitter-textobjects',
+		after = 'nvim-treesitter',
+	})
 
 	use('windwp/nvim-ts-autotag')
 
@@ -56,6 +62,7 @@ packer.startup(function(use)
 
 	use('tpope/vim-commentary')
 	use('JoosepAlviste/nvim-ts-context-commentstring')
+	-- TODO: Use 'numToStr/Comment.nvim' instead
 
 	use('xiyaowong/nvim-transparent')
 
@@ -71,3 +78,12 @@ packer.startup(function(use)
 
 	if packer_bootstrap then require('packer').sync() end
 end)
+
+if packer_bootstrap then
+	print('==================================')
+	print('    Plugins are being installed')
+	print('    Wait until Packer completes,')
+	print('       then restart nvim')
+	print('==================================')
+	return
+end

@@ -1,5 +1,9 @@
 local keymap = vim.keymap
 
+-- Remove default behavior of space
+keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Do not yank things deleted with x
 keymap.set('n', 'x', '"_x')
 
 -- Increment/decrement
