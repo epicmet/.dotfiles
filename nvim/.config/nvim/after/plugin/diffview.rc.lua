@@ -179,6 +179,14 @@ diffview.setup({
 	},
 })
 
--- Maybe I comeup with better keymaps later
-vim.keymap.set('n', '<leader>gdo', '<cmd>:DiffviewOpen<CR>')
-vim.keymap.set('n', '<leader>gdc', '<cmd>:DiffviewClose<CR>')
+function DiffviewToggle()
+	local lib = require('diffview.lib')
+	local view = lib.get_current_view()
+	if view then
+		vim.cmd.DiffviewClose()
+	else
+		vim.cmd.DiffviewOpen()
+	end
+end
+
+vim.keymap.set('n', '<leader>gd', DiffviewToggle)
