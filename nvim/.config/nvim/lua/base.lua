@@ -45,11 +45,11 @@ vim.opt.undofile = true
 vim.opt.updatetime = 50
 
 vim.api.nvim_create_autocmd('TextYankPost', {
-	desc = 'Hightlight selection on yank',
-	pattern = '*',
-	callback = function()
-		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 50 })
-	end,
+  desc = 'Hightlight selection on yank',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 50 })
+  end,
 })
 
 -- Undercurl
@@ -58,8 +58,8 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd('InsertLeave', {
-	pattern = '*',
-	command = 'set nopaste',
+  pattern = '*',
+  command = 'set nopaste',
 })
 
 -- Add asterisks in block comments

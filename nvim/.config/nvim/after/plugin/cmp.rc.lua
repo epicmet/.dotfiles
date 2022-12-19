@@ -1,7 +1,7 @@
-local status, cmp = pcall(require, "cmp")
-if (not status) then return end
+local status, cmp = pcall(require, 'cmp')
+if not status then return end
 
-local lspkind = require 'lspkind'
+local lspkind = require('lspkind')
 
 cmp.setup({
   snippet = {
@@ -16,7 +16,7 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true
+      select = true,
     }),
   }),
   sources = cmp.config.sources({
@@ -25,14 +25,14 @@ cmp.setup({
     { name = 'path' },
   }),
   formatting = {
-    format = lspkind.cmp_format({ with_text = false, maxwidth = 50 })
-  }
+    format = lspkind.cmp_format({ with_text = false, maxwidth = 50 }),
+  },
 })
 
-vim.cmd [[
+vim.cmd([[
   set completeopt=menuone,noinsert,noselect
   highlight! default link CmpItemKind CmpItemMenuDefault
-]]
+]])
 
 -- " Use <Tab> and <S-Tab> to navigate through popup menu
 -- inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"

@@ -1,22 +1,18 @@
-require("base")
-require("global")
-require("highlights")
-require("maps")
-require("plugins")
+require('base')
+require('global')
+require('highlights')
+require('maps')
+require('plugins')
 
-require("autorun")
+require('autorun')
 
 local function has(x)
   return vim.fn.has(x) == 1
 end
 
-local is_mac = has "macunix"
-local is_win = has "win32"
+local is_mac = has('macunix')
+local is_win = has('win32')
 
-if is_mac then
-  require("macos")
-end
+if is_mac then require('macos') end
 
-if is_win then
-  require("windows")
-end
+if is_win then require('windows') end
