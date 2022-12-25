@@ -18,7 +18,8 @@ packer.startup(function(use)
 
   use('nvim-lua/plenary.nvim')
 
-  use('folke/tokyonight.nvim')
+  use('EdenEast/nightfox.nvim')
+
   use('kyazdani42/nvim-web-devicons')
   use('hoob3rt/lualine.nvim')
   use('norcalli/nvim-colorizer.lua')
