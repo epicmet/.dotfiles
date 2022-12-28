@@ -79,6 +79,7 @@ packer.startup(function(use)
 
   use('lukas-reineke/indent-blankline.nvim')
 
+  use('folke/todo-comments.nvim')
   if packer_bootstrap then require('packer').sync() end
 end)
 
