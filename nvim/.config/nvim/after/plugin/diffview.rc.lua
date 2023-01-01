@@ -127,7 +127,7 @@ diffview.setup({
       ['o'] = actions.select_entry,
       ['<2-LeftMouse>'] = actions.select_entry,
       ['-'] = actions.toggle_stage_entry, -- Stage / unstage the selected entry.
-      ['S'] = actions.stage_all, -- Stage all entries.
+      ['s'] = actions.stage_all, -- Stage all entries.
       ['U'] = actions.unstage_all, -- Unstage all entries.
       ['X'] = actions.restore_entry, -- Restore entry to the state on the left side.
       ['L'] = actions.open_commit_log, -- Open the commit log panel.
