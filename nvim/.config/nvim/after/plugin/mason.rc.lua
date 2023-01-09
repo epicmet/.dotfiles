@@ -15,6 +15,8 @@ mason_null_ls.setup({
     'stylua',
     'jq',
     'shfmt',
+    'buf',
+    'shellcheck',
     -- "eslint_d"
   },
 })
@@ -26,5 +28,6 @@ lspconfig.setup({
     'cssls',
     'sumneko_lua',
     'tailwindcss',
+    'rust_analyzer',
   },
 })
