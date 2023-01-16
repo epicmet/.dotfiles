@@ -69,4 +69,5 @@ bindkey "^n" history-beginning-search-forward
 
 cfonts "here we go again" -f chrome -a center
 
-. /opt/homebrew/etc/profile.d/z.sh || echo "z is not installed"
+# . /opt/homebrew/etc/profile.d/z.sh || echo "z is not installed"
+. /usr/local/etc/profile.d/z.sh || echo "z is not installed"
