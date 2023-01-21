@@ -9,21 +9,25 @@ I use vim btw. 😎
 - Main:
   - [neovim](#neovim) (>=0.6)
   - [tmux](#tmux) (>=3.2)
+  - [tree-sitter](#tree-sitter)
   - [zsh](#zsh)
   - [lua & luarocks](#lua)
   - [stow](#stow)
   - [fzf](#fzf) (>=0.23)
   - [yabai(on macOS)](#yabai)
 - Tools:
-  - [oh my zsh](https://ohmyz.sh/)
+  - [starship](https://starship.rs/)
   - [packer](#packer)
   - [tpm](https://github.com/tmux-plugins/tpm)
   - [prettierd](https://github.com/fsouza/prettierd)
   - [eslintd](https://github.com/mantoni/eslint_d.js)
   - [fd](https://github.com/sharkdp/fd)
   - [rg](https://github.com/BurntSushi/ripgrep)
-  - [jq](https://github.com/stedolan/jq)
+  - [jq](#jq)
   - [gum](https://github.com/charmbracelet/gum)
+  - [cfonts](#cfonts)
+  - [z](#z)
+  - [nala(on ubuntu)](https://gitlab.com/volian/nala/-/wikis/Installation)
   - [nerd font](#nerd-font)
 
 ## Usage
@@ -98,19 +102,46 @@ Follow the instructions in this [repo](https://github.com/wbthomason/packer.nvim
 
 3. Change the font of your terminal to the font you installed.
 
-### yabai 
+### yabai
+
 1. Install `yabai` and `skhd` via `homebrew`.
+
 ```bash
   brew install yabai
   brew install skhd
 ```
 
 2. Start the service on background
+
 ```bash
   brew services start yabai
   brew services start skhd
 ```
+
 Both of these should be running. Check their status with this command.
+
 ```bash
   brew services list
 ```
+
+### z
+
+On ubuntu:
+
+1. clone the [repo](https://github.com/rupa/z) in `~/Software` dir.
+2. run `chmod +rx ~/Software/z/z.sh`.
+
+On Mac:
+Install it from homebrew
+
+### cfonts
+
+Install with `npm i -g cfonts`
+
+### jq
+
+Get the latest release from the [repo](https://github.com/stedolan/jq) and put it in `~/Software/bin`, then make it executable with `chmod` command.
+
+### tree-sitter
+
+Get the latest release form the [repo](https://github.com/tree-sitter/tree-sitter) and put it in `~/Software/bin`, then make it executable with `chmod` command.
