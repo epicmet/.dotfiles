@@ -58,6 +58,9 @@ eval "$(starship init zsh)"
 ### ALIASES (For a full list of active aliases, run `alias`) ###
 alias vim='nvim'
 alias k='kubectl'
+alias glog='git log --graph --oneline'
+alias gst='git status'
+alias l='ls -lash'
 
 isLinux
 if [[ $? -eq 0 ]]; then
