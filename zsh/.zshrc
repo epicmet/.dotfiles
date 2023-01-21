@@ -25,6 +25,7 @@ export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk # Android stuff
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator # Android stuff
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools # Android stuff
 export PATH=$PATH:/Library/Java/JavaVirtualMachines/jdk-16.jdk/Contents/Home/bin # java jdk shit
+export PATH=$PATH:~/Software/bin
 
 isLinux
 if [[ $? -eq 0 ]]; then
@@ -61,6 +62,7 @@ alias k='kubectl'
 alias glog='git log --graph --oneline'
 alias gst='git status'
 alias l='ls -lash'
+alias v2ray='cd ~/Software/v2ray-core && ./v2ray --config=config.json'
 
 isLinux
 if [[ $? -eq 0 ]]; then
@@ -75,4 +77,13 @@ bindkey "^n" history-beginning-search-forward
 cfonts "here we go again" -f chrome -a center
 
 # . /opt/homebrew/etc/profile.d/z.sh || echo "z is not installed"
-. /usr/local/etc/profile.d/z.sh || echo "z is not installed"
+isLinux
+if [[ $? -eq 0 ]]; then
+  . ~/Software/z/z.sh || echo "z is not installed"
+fi
+
+isMac
+if [[ $? -eq 0 ]]; then
+  . /usr/local/etc/profile.d/z.sh || echo "z is not installed"
+fi
+
