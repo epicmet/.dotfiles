@@ -51,7 +51,9 @@ ZSH_THEME="robbyrussell" # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
+
+eval "$(starship init zsh)"
 
 ### ALIASES (For a full list of active aliases, run `alias`) ###
 alias vim='nvim'
