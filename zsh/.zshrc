@@ -87,3 +87,7 @@ if [[ $? -eq 0 ]]; then
   . /usr/local/etc/profile.d/z.sh || echo "z is not installed"
 fi
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
