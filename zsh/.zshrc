@@ -25,7 +25,7 @@ export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk # Android stuff
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator # Android stuff
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools # Android stuff
 export PATH=$PATH:/Library/Java/JavaVirtualMachines/jdk-16.jdk/Contents/Home/bin # java jdk shit
-export PATH=$PATH:~/Software/bin
+export PATH=$PATH:~/Software/bin:~/.cargo/bin
 
 isLinux
 if [[ $? -eq 0 ]]; then
