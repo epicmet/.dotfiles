@@ -44,7 +44,7 @@ alias vim='nvim'
 alias k='kubectl'
 alias glog='git log --graph --oneline'
 alias gst='git status'
-alias l='ls -lash'
+alias l='exa --icons -lFah'
 alias v2ray='cd ~/Software/v2ray-core && ./v2ray --config=config.json'
 alias sudo='sudo '
 
