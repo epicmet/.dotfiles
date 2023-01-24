@@ -6,13 +6,16 @@ require('plugins')
 
 require('autorun')
 
-local function has(x)
-  return vim.fn.has(x) == 1
-end
+-- I don't have any os specefic stuff at the moment
 
-local is_mac = has('macunix')
-local is_win = has('win32')
+-- local os = vim.loop.os_uname().sysname
 
-if is_mac then require('macos') end
+-- local is_mac = os == "Darwin"
+-- local is_win = os == "Win32"
+-- local is_linux = os == "Linux"
 
-if is_win then require('windows') end
+-- if is_linux then print('linux!!') end
+
+-- if is_mac then require('macos') end
+
+-- if is_win then require('windows') end
