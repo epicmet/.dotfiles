@@ -44,6 +44,8 @@ vim.opt.undofile = true
 
 vim.opt.updatetime = 50
 
+vim.opt.clipboard:append({ 'unnamedplus' }) -- Sync yank registry with clipboard
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Hightlight selection on yank',
   pattern = '*',
