@@ -126,13 +126,8 @@ Both of these should be running. Check their status with this command.
 
 ### z
 
-On ubuntu:
-
 1. clone the [repo](https://github.com/rupa/z) in `~/Software` dir.
 2. run `chmod +rx ~/Software/z/z.sh`.
-
-On Mac:
-Install it from homebrew
 
 ### cfonts
 

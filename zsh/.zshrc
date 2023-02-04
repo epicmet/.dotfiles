@@ -68,13 +68,4 @@ eval "$(starship init zsh)"
 
 cfonts "here we go again" -f chrome -a center
 
-isLinux
-if [[ $? -eq 0 ]]; then
-  . ~/Software/z/z.sh || echo "z is not installed"
-fi
-
-isMac
-if [[ $? -eq 0 ]]; then
-  . /usr/local/etc/profile.d/z.sh || echo "z is not installed"
-fi
-
+. ~/Software/z/z.sh || echo "z is not installed"
