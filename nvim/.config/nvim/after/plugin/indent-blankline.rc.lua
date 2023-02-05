@@ -1,7 +1,7 @@
 local status, indent = pcall(require, 'indent_blankline')
 if not status then return end
 
-vim.cmd([[highlight IndentBlanklineIndent guifg=#61AFEF gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent guifg=#FFFFFF gui=nocombine]])
 
 indent.setup({
   char = '┊',
