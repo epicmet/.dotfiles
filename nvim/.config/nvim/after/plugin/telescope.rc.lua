@@ -142,3 +142,5 @@ vim.keymap.set('n', '<leader>gb', function()
     layout_strategy = 'vertical',
   })
 end)
+
+telescope.load_extension('yank_history')
