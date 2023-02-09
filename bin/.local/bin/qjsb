@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+# `qjsb` short for `Quera JavaScript Base`
+#   This script will generate an `index.js` file with basic `readline` handler
+#   And a very simple `package.json` if they do not exist.
+
+MAIN_JS_FILE="const readline = require(\"node:readline\");
+
+const { stdin: input, stderr: output } = process;
+
+async function processLineByLine() {
+  const rl = readline.createInterface({ input, output, terminal: false });
+
+  let ln = 0; // line number to indicate where are we in terms of input
+  const inputArr = [];
+
+  for await (const line of rl) {
+    inputArr.push(line);
+
+    if (ln >= parseInt(inputArr[0])) break;
+    ln++;
+  }
+
+  // do stuff
+}
+
+processLineByLine();
+"
+
+JSON_FILE="{
+  \"main\": \"index.js\",
+  \"scripts\": {
+    \"test\": \"node index.js < input.txt\"
+  },
+  \"author\": \"Mahdi Aghaei\"
+}
+"
+
+makePackage() {
+  echo "$JSON_FILE" > 'package.json'
+}
+
+makeIndex() {
+  echo "$MAIN_JS_FILE" > 'index.js'
+}
+
+makeInput() {
+  touch 'input.txt'
+}
+
+if [[ ! -f "package.json" ]]; then 
+  makePackage
+else 
+  echo "\"package.json\" does already exists in this directory"
+fi
+
+
+if [[ ! -f "index.js" ]]; then
+  makeIndex
+else
+  echo "\"index.js\" does already exists in this directory"
+fi
+
+if [[ ! -f "input.txt" ]]; then
+  makeInput
+else
+  echo "\"input.txt\" does already exists in this directory"
+fi
