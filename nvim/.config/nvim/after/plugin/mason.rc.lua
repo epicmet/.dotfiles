@@ -26,7 +26,7 @@ lspconfig.setup({
     'tsserver',
     'html',
     'cssls',
-    'sumneko_lua',
+    'lua_ls',
     'tailwindcss',
     'rust_analyzer',
   },
