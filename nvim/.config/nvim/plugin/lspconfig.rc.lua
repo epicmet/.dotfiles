@@ -87,9 +87,16 @@ protocol.CompletionItemKind = {
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+nvim_lsp.denols.setup({
+  on_attach = on_attach,
+  root_dir = nvim_lsp.util.root_pattern('deno.json', 'deno.jsonc'),
+})
+
 nvim_lsp.tsserver.setup({
   on_attach = on_attach,
   cmd = { 'typescript-language-server', '--stdio' },
+  root_dir = nvim_lsp.util.root_pattern('package.json'),
+  single_file_support = false,
   capabilities = capabilities,
 })
 
