@@ -22,7 +22,8 @@ isLinux() {
 ### PATH ###
 export PATH=$HOME/.local/bin:$PATH #local bins
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH" # Yarn bin
-export PATH=$PATH:~/Software/bin:~/.cargo/bin
+export PATH=$PATH:~/Software/bin:~/.cargo/bin # Rust
+export PATH="$HOME/.deno/bin:$PATH" # Deno
 
 isLinux
 if [[ $? -eq 0 ]]; then
