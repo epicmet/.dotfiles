@@ -29,5 +29,6 @@ lspconfig.setup({
     'lua_ls',
     'tailwindcss',
     'rust_analyzer',
+    'prismals',
   },
 })
