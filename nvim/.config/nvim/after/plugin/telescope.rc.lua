@@ -29,6 +29,9 @@ telescope.setup({
       '--hidden',
       '--smart-case',
     },
+    file_ignore_patterns = {
+      '^.git/',
+    },
   },
   extensions = {
     file_browser = {
