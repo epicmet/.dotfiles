@@ -43,6 +43,7 @@ setopt appendhistory
 ### ALIASES (For a full list of active aliases, run `alias`) ###
 alias vim='nvim'
 alias k='kubectl'
+alias d='docker'
 alias glog='git log --graph --oneline'
 alias gst='git status'
 alias l='exa --icons -lFah'
