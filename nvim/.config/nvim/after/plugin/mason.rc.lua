@@ -16,7 +16,7 @@ mason_null_ls.setup({
     'jq',
     'shfmt',
     'buf',
-    'shellcheck',
+    -- 'shellcheck',
     -- "eslint_d"
   },
 })
