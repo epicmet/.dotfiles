@@ -72,4 +72,6 @@ cfonts "here we go again" -f chrome -a center
 
 . ~/Software/z/z.sh || echo "z is not installed"
 
-source ~/.private_env
+if [[ -f "$HOME/.private_env" ]]; then
+  source ~/.private_env
+fi
