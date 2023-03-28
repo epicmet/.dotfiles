@@ -49,6 +49,7 @@ alias gst='git status'
 alias l='exa --icons -lFah'
 alias v2ray='cd ~/Software/v2ray-core && ./v2ray --config=config.json'
 alias sudo='sudo '
+alias lg='l | grep '
 
 isLinux
 if [[ $? -eq 0 ]]; then
