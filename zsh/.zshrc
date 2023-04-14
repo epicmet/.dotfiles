@@ -25,6 +25,12 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH" 
 export PATH=$PATH:~/Software/bin:~/.cargo/bin # Rust
 export PATH="$HOME/.deno/bin:$PATH" # Deno
 
+isMac
+if [[ $? -eq 0 ]]; then
+  export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+fi
+
+
 isLinux
 if [[ $? -eq 0 ]]; then
   export PATH=$HOME/bin:/usr/local/bin:$PATH
