@@ -88,7 +88,7 @@ If you have neovim installed, chances are you already have lua, also checkout th
 
 ### fzf
 
-On macOS installing from brew should be fine but on ubuntu it's beter to clone from the [repo](https://github.com/junegunn/fzf) and run install script.
+On macOS installing from brew should be fine but on ubuntu it's beter to clone from the [repo](https://github.com/junegunn/fzf) and run install script. Make sure you have `.fzf.zsh` in your home directory.
 
 ### packer
 
@@ -96,11 +96,9 @@ Follow the instructions in this [repo](https://github.com/wbthomason/packer.nvim
 
 ### nerd-font
 
-1. Go to the [repo](https://github.com/ryanoasis/nerd-fonts) and then from the fonts table choose a font. "Caskaydia Cove Nerd Font" or "Fira Code Nerd Font" are suggested.
+Dowload you desired font from this [repo](https://github.com/ryanoasis/nerd-fonts), otf versions are the best. "Caskaydia Cove Nerd Font" or "Fira Code Nerd Font" are suggested. Then install that font.
 
-2. In order to install click on the link for any font you chose. Generally it's something like: Go to Regular directory and find a complete directory and install the font on your system (otf versions are the best). OR follow the instruction on the readme of the font.
-
-3. Change the font of your terminal to the font you installed.
+On arch linux after put the font in `/usr/share/fonts` and give it `444` chmod access (or give `555` to the containing folder). Refer to [this](https://wiki.archlinux.org/title/fonts) link.
 
 ### yabai
 
