@@ -91,7 +91,9 @@ else
   echo "Could not load fzf key-bindings and completion"
 fi
 
-cfonts "here we go again" -f chrome -a center
+if command -v cfonts &> /dev/null; then
+  cfonts "here we go again" -f chrome -a center
+fi
 
 . ~/Software/z/z.sh || echo "z is not installed"
 
