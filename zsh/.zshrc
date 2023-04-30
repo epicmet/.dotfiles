@@ -81,7 +81,15 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fzf
+
+# fzf key-bindings
+if [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
+elif [[ -f /usr/share/fzf/key-bindings.zsh ]]; then
+  source /usr/share/fzf/key-bindings.zsh
+else
+  echo "Could not load fzf key-bindings and completion"
+fi
 
 cfonts "here we go again" -f chrome -a center
 
