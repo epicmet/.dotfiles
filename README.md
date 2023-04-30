@@ -30,6 +30,7 @@ I use vim btw. 😎
   - [nala(on ubuntu)](https://gitlab.com/volian/nala/-/wikis/Installation)
   - [nerd font](#nerd-font)
   - [bat](https://github.com/sharkdp/bat)
+  - [xclip](#xclip)
 
 ## Usage
 
@@ -139,3 +140,7 @@ Get the latest release from the [repo](https://github.com/stedolan/jq) and put i
 ### tree-sitter
 
 Get the latest release form the [repo](https://github.com/tree-sitter/tree-sitter) and put it in `~/Software/bin`, then make it executable with `chmod` command.
+
+### xlip
+
+You need xclip installed to sync yank and clipboard system. Install it with your package manager.
