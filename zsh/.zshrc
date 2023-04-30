@@ -41,10 +41,14 @@ export LANG=en_US.UTF-8 # manually set language environment
 export NVM_DIR="$HOME/.nvm" # nvm
 
 ### Main setting ###
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+export HISTTIMEFORMAT="[%F %T] " # timestamp format
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
 setopt appendhistory
+setopt EXTENDED_HISTORY # Add timestamp to history. use `history -E`
+setopt INC_APPEND_HISTORY # preserve history between sessions https://www.soberkoder.com/better-zsh-history/
+
 
 ### ALIASES (For a full list of active aliases, run `alias`) ###
 alias vim='nvim'
