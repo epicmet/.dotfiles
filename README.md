@@ -29,6 +29,7 @@ I use vim btw. 😎
   - [z](#z)
   - [nala(on ubuntu)](https://gitlab.com/volian/nala/-/wikis/Installation)
   - [nerd font](#nerd-font)
+  - [bat](https://github.com/sharkdp/bat)
 
 ## Usage
 
