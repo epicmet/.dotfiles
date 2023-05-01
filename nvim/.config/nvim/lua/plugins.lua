@@ -65,8 +65,6 @@ packer.startup(function(use)
   use('JoosepAlviste/nvim-ts-context-commentstring')
   -- TODO: Use 'numToStr/Comment.nvim' instead
 
-  use('xiyaowong/nvim-transparent')
-
   use({ 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' })
 
   use('ThePrimeagen/vim-be-good')
