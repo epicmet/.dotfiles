@@ -32,6 +32,7 @@ I use vim btw. 😎
   - [bat](https://github.com/sharkdp/bat)
   - [xclip](#xclip)
   - [dua](https://github.com/Byron/dua-cli)
+  - [bpytop](https://github.com/aristocratos/bpytop)
 
 ## Usage
 
