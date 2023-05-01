@@ -31,6 +31,7 @@ I use vim btw. 😎
   - [nerd font](#nerd-font)
   - [bat](https://github.com/sharkdp/bat)
   - [xclip](#xclip)
+  - [dua](https://github.com/Byron/dua-cli)
 
 ## Usage
 
