@@ -77,13 +77,13 @@ fi
 bindkey "^p" history-beginning-search-backward
 bindkey "^n" history-beginning-search-forward
 
-
-### Startup ###
-eval "$(starship init zsh)"
-
 # Case insensitive
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+### Startup ###
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -100,8 +100,6 @@ fi
 if command -v cfonts &> /dev/null; then
   cfonts "here we go again" -f chrome -a center
 fi
-
-. ~/Software/z/z.sh || echo "z is not installed"
 
 if [[ -f "$HOME/.private_env" ]]; then
   source ~/.private_env

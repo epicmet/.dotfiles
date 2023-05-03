@@ -26,7 +26,7 @@ I use vim btw. 😎
   - [jq](#jq)
   - [gum](https://github.com/charmbracelet/gum)
   - [cfonts](#cfonts)
-  - [z](#z)
+  - [zoxide](https://github.com/ajeetdsouza/zoxide)
   - [nala(on ubuntu)](https://gitlab.com/volian/nala/-/wikis/Installation)
   - [nerd font](#nerd-font)
   - [bat](https://github.com/sharkdp/bat)
