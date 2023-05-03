@@ -90,6 +90,8 @@ packer.startup(function(use)
 
   use('gbprod/yanky.nvim')
 
+  use('nanotee/zoxide.vim')
+
   if packer_bootstrap then require('packer').sync() end
 end)
 
