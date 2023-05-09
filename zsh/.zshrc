@@ -69,7 +69,7 @@ alias lg='l | grep -i'
 
 isLinux
 if [[ $? -eq 0 ]]; then
-  alias 'xdg-open'='open'
+  alias 'open'='xdg-open'
 fi
 
 ### KEY BINDING ###
