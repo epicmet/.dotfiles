@@ -100,9 +100,9 @@ vim.keymap.set('n', 'sg', function()
 end, { desc = '[S]earch by [G]rep' })
 
 -- Until I find a usage for this, this stays commented
--- vim.keymap.set('n', '<leader><Space>', function()
--- 	builtin.buffers()
--- end)
+vim.keymap.set('n', '<leader><Space>', function()
+  builtin.buffers()
+end)
 
 vim.keymap.set('n', 'sh', function()
   builtin.help_tags()
