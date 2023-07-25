@@ -32,7 +32,7 @@ packer.startup(function(use)
   use('hrsh7th/nvim-cmp')
   use({
     'neovim/nvim-lspconfig',
-    requires = { 'j-hui/fidget.nvim' },
+    requires = { 'j-hui/fidget.nvim', tag = 'legacy' },
   })
   use('williamboman/mason.nvim')
   use('williamboman/mason-lspconfig.nvim')
