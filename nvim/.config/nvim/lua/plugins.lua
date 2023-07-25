@@ -92,6 +92,8 @@ packer.startup(function(use)
 
   use('nanotee/zoxide.vim')
 
+  use('Exafunction/codeium.vim')
+
   if packer_bootstrap then require('packer').sync() end
 end)
 
