@@ -96,7 +96,7 @@ nvim_lsp.tsserver.setup({
   on_attach = on_attach,
   cmd = { 'typescript-language-server', '--stdio' },
   root_dir = nvim_lsp.util.root_pattern('package.json'),
-  single_file_support = false,
+  single_file_support = true,
   capabilities = capabilities,
 })
 
