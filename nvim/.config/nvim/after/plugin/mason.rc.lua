@@ -30,5 +30,6 @@ lspconfig.setup({
     'tailwindcss',
     'rust_analyzer',
     'prismals',
+    'gopls',
   },
 })
