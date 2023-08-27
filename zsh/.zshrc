@@ -24,6 +24,7 @@ export PATH=$HOME/.local/bin:$PATH #local bins
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH" # Yarn bin
 export PATH=$PATH:~/Software/bin:~/.cargo/bin # Rust
 export PATH="$HOME/.deno/bin:$PATH" # Deno
+export PATH="$HOME/Software/git-fuzzy/bin:$PATH"
 
 isMac
 if [[ $? -eq 0 ]]; then
@@ -58,6 +59,7 @@ alias glog='git log --graph --oneline'
 alias gst='git status'
 alias ga='git add'
 alias gc='git commit'
+alias gf='git fuzzy'
 alias gs='git switch'
 alias gps='git push'
 alias gpl='git pull'
