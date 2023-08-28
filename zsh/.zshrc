@@ -25,6 +25,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH" 
 export PATH=$PATH:~/Software/bin:~/.cargo/bin # Rust
 export PATH="$HOME/.deno/bin:$PATH" # Deno
 export PATH="$HOME/Software/git-fuzzy/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH" # Go binaries
 
 isMac
 if [[ $? -eq 0 ]]; then
