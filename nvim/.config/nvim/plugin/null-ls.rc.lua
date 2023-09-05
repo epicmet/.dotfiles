@@ -16,14 +16,14 @@ null_ls.setup({
   },
   on_attach = function(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
-      vim.keymap.set('n', '<leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>')
+      vim.keymap.set('n', '<leader>f', '<cmd>lua vim.lsp.buf.format({ sync = true })<CR>')
 
       vim.api.nvim_clear_autocmds({ buffer = 0, group = augroup_format })
       vim.api.nvim_create_autocmd('BufWritePre', {
         group = augroup_format,
         buffer = 0,
         callback = function()
-          vim.lsp.buf.format({ async = true })
+          vim.lsp.buf.format({ sync = true })
         end,
       })
     end
