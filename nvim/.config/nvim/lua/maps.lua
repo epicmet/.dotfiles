@@ -53,3 +53,10 @@ keymap.set('x', '<leader>p', '"_dP')
 -- Delete to void register
 keymap.set('n', '<leader>d', '"_d')
 keymap.set('v', '<leader>d', '"_d')
+
+-- Replace current word (This suggested by Codeium !!)
+keymap.set('n', '<leader>rp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Beginning and end of the line
+keymap.set('n', 'H', '^')
+keymap.set('n', 'L', '$')
