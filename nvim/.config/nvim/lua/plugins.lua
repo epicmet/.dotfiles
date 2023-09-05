@@ -95,6 +95,8 @@ packer.startup(function(use)
 
   use('Exafunction/codeium.vim')
 
+  use('AlexvZyl/nordic.nvim')
+
   if packer_bootstrap then require('packer').sync() end
 end)
 
