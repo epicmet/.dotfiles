@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+####### This script uses `pidstat` and `tmux` to split a window and show the CPU and memory usage of a given process #######
+
+set -e
+
+pid=$1
+if [ -z "$pid" ]; then
+  echo
+  echo "ERROR: Wrong usage"
+  echo "------------------"
+  echo "  Usage: crps <pid> [--curr]"
+  exit 1
+fi
+
+# If --curr is passed, do not create a new window
+if [ "$2" != "--curr" ]; then
+  tmux neww -a
+fi
+tmux send-keys "pidstat -r -p ${pid} 1" C-m
+
+tmux splitw -h -p 50
+tmux send-keys "pidstat -p ${pid} 1" C-m
