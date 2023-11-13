@@ -17,6 +17,7 @@ mason_null_ls.setup({
     'shfmt',
     'buf',
     'jdtls',
+    'clang-format',
     -- 'shellcheck',
     -- "eslint_d"
   },
@@ -32,5 +33,6 @@ lspconfig.setup({
     'rust_analyzer',
     'prismals',
     'gopls',
+    'clangd',
   },
 })

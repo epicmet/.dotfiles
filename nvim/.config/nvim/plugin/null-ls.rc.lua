@@ -10,6 +10,7 @@ null_ls.setup({
   sources = {
     formatting.prettier,
     formatting.stylua,
+    formatting.clang_format,
     --   diagnostics.eslint_d.with({
     --     diagnostics_format = '[eslint] #{m}\n(#{c})'
     --   })
