@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
 
+tm_realpath() {
+  if ! command -v realpath &> /dev/null; then
+    tmux display-message "\`realpath\` is not installed! There would be problems creating new windows in this session unless you passed an absolute path."
+    echo $1
+  else
+    echo $(realpath $1)
+  fi
+}
+
 if [[ $# -eq 1 ]]; then
-  selected=$1
+  selected=$(tm_realpath "$1")
 else
-  selected=$(find ~ ~/Projects ~/Projects/Learning ~/Projects/Learning/* ~/Work ~/Playgrounds ~/tmp ~/Software ~/Documents -mindepth 1 -maxdepth 1 -type d | fzf)
+  selected=$(tm_realpath "$(find ~ ~/Projects ~/Projects/Learning ~/Projects/Learning/* ~/Work ~/Playgrounds ~/tmp ~/Software ~/Documents -mindepth 1 -maxdepth 1 -type d | fzf)")
 fi
 
 if [[ -z $selected ]]; then
