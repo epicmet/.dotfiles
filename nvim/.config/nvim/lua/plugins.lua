@@ -62,9 +62,8 @@ packer.startup(function(use)
 
   use('lewis6991/gitsigns.nvim')
 
-  use('tpope/vim-commentary')
   use('JoosepAlviste/nvim-ts-context-commentstring')
-  -- TODO: Use 'numToStr/Comment.nvim' instead
+  use('numToStr/Comment.nvim')
 
   use({ 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' })
 

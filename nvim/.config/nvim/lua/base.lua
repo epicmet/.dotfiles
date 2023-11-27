@@ -36,6 +36,7 @@ vim.opt.wildignore:append({ '*/node_modules/*' })
 vim.opt.mouse = nil
 
 vim.g.mapleader = ' '
+vim.g.skip_ts_context_commentstring_module = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
