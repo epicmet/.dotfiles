@@ -26,6 +26,7 @@ ts.setup({
     'html',
     'lua',
     'prisma',
+    'svelte',
   },
   autotag = {
     enable = true,
