@@ -18,6 +18,7 @@ mason_null_ls.setup({
     'buf',
     'jdtls',
     'clang-format',
+    'phpactor',
     -- 'shellcheck',
     -- "eslint_d"
   },

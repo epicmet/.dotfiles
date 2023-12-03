@@ -27,6 +27,7 @@ ts.setup({
     'lua',
     'prisma',
     'svelte',
+    'php',
   },
   autotag = {
     enable = true,

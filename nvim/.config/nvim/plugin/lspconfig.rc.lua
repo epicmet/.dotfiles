@@ -139,6 +139,11 @@ nvim_lsp.clangd.setup({
   capabilities = capabilities,
 })
 
+nvim_lsp.phpactor.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
 nvim_lsp.bashls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
