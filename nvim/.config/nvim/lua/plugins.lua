@@ -96,6 +96,8 @@ packer.startup(function(use)
 
   use('AlexvZyl/nordic.nvim')
 
+  use('mfussenegger/nvim-jdtls')
+
   if packer_bootstrap then require('packer').sync() end
 end)
 

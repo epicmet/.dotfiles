@@ -26,6 +26,7 @@ export PATH=$PATH:~/Software/bin:~/.cargo/bin # Rust
 export PATH="$HOME/.deno/bin:$PATH" # Deno
 export PATH="$HOME/Software/git-fuzzy/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH" # Go binaries
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH" # Language server installed via Mason
 
 isMac
 if [[ $? -eq 0 ]]; then
