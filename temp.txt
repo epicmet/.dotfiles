@@ -1,0 +1,13 @@
+Links to checkout for integrating with java:
+
+- https://github.com/mfussenegger/nvim-jdtls#troubleshooting
+- https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
+- https://github.com/eclipse-jdtls/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+- https://www.lunarvim.org/docs/features/supported-languages/java
+- https://sookocheff.com/post/vim/neovim-java-ide/
+- https://alpha2phi.medium.com/neovim-for-beginners-java-6a86cf1a91a5
+- https://github.com/magidc/nvim-config
+- https://www.chiarulli.me/Neovim/24-neovim-and-java/
+- https://zignar.net/2019/11/21/setup-neovim-for-java-development/
+- https://alpha2phi.medium.com/neovim-pde-java-97aeda910c3a
+- https://www.reddit.com/r/neovim/comments/12pb505/does_anyone_try_neovim_as_a_java_ide/
