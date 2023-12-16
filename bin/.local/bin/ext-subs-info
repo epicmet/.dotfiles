@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "Usage: ./run.sh"
+  echo "  -h, --help: Show this help."
+  echo
+  echo "Description:"
+  echo "  This script is used to convert the response from Youtube to a JSON file containing all the subscriptions."
+  echo "  You need to provide the response form Youtube in \"resp.json\" file."
+  echo "  The script will create a file \"res.json\" in the current directory that has all the subscriptions like this:"
+  echo
+  echo "  Username"
+  echo "  https://youtube.com/@username"
+  echo
+  exit 0
+fi
+
+if [[ -e "res.json" ]]; then
+  echo "ERROR: \"res.json\" already exists in this directory";
+  echo "Please remove the \"res.json\" file or run the script in another directory."
+  exit 1
+fi
+
+if [[ ! -e "resp.json" ]]; then
+  echo "ERROR: Could not find \"resp.json\"."
+  echo "Please provide the response form Youtube in \"resp.json\" file."
+  exit 1
+fi
+
+cat resp.json | jq '.guideSubscriptionsSectionRenderer.items[].guideEntryRenderer' > res.json
+
+cat resp.json | jq '.guideSubscriptionsSectionRenderer.items[].guideCollapsibleEntryRenderer | select(. != null) | .expandableItems[].guideEntryRenderer' >> res.json
+
+cat subs.json | jq '.formattedTitle.simpleText, .navigationEndpoint.commandMetadata.webCommandMetadata.url' > res.json
+
+sed -i 's/\"//g' res.json
+
+sed -i '0~2 s/^/https:\/\/youtube\.com/' res.json
+
+sed -i '0~2 a\\' res.json
+
+echo "Done. Look at \"res.json\" file."
+
