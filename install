@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# If the Unique ID is 0, the user has root privileges
+[ "$UID" -eq 0 ] || exec sudo -p "[Need sudo for installing initial script] Password: " "$0" "$@"
+
+# Color codes
+RED='\033[1;31m'
+YELLOW='\033[1;33m'
+BLUE="\\033[38;5;27m"
+SEA="\\033[38;5;49m"
+GREEN='\033[1;32m'
+CYAN='\033[1;36m'
+NC='\033[0m'
+
+# Emoji codes
+CHECK_MARK="${GREEN}\xE2\x9C\x94${NC}"
+X_MARK="${RED}\xE2\x9C\x96${NC}"
+PIN="${RED}\xF0\x9F\x93\x8C${NC}"
+CLOCK="${GREEN}\xE2\x8C\x9B${NC}"
+ARROW="${SEA}\xE2\x96\xB6${NC}"
+BOOK="${RED}\xF0\x9F\x93\x8B${NC}"
+HOT="${ORANGE}\xF0\x9F\x94\xA5${NC}"
+WARNING="${GREEN}\xF0\x9F\x9A\xA8${NC}"
+RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
+
+set -e
+
+abort() {
+  printf "${RED}%s\n${NC}" "$@" >&2
+  exit 1
+}
+
+if ! command -v gum 2> /dev/null; then
+  echo "WARNING"
+  echo -e "Installing gum..."
+  echo
+fi
+
+if ! command -v ansible 2> /dev/null; then
+  echo "WARNING"
+  echo -e "Installing ansible..."
+  echo
+fi
+
+if command -v dotfiles 2> /dev/null; then
+  abort "There is already a \'dotfiles\' executable found in your \$PATH"
+  # TODO: Ask user to delete it or not
+fi
+
+curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/master/init > temp_dotfiles_executable &&
+mv temp_dotfiles_executable /usr/local/bin/dotfiles &&
+chmod +x /usr/local/bin/dotfiles
+
+echo -e "Success! Now run \`dotfiles\` (you may need to reload your terminal session)"
