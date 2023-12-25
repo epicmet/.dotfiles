@@ -1,3 +1,83 @@
 #!/usr/bin/env bash
 
-echo "WIP: dotfiles!"
+# TODO: Make these dynamic as reading it from ENV
+DOTFILES_DIR="$HOME/.dotfiles"
+DOTFILES_DEFAULT_BRANCH="master"
+DOTFILES_DEFAULT_REMOTE="origin"
+# TODO: Configure SSH
+# DOTFILES_GIT_URL="git@github.com:MahdiAghaei1/pinket.git"
+DOTFILES_GIT_URL="https://github.com/MahdiAghaei1/.dotfiles.git"
+
+# TODO: Parse flags
+# --yes? -> skip confirmation of OS and choose the detected one
+
+if [[ ! -d "$DOTFILES_DIR" ]]; then
+  gum spin -s line --title="Cloning the git repository into \"$HOME/.dotfiles\"..." -- \
+  git clone --quiet "$DOTFILES_GIT_URL" "$DOTFILES_DIR" 2>&1 > /dev/null
+else
+  gum spin -s line --title="Updating the git repository..." -- \
+  git -C "$DOTFILES_DIR" pull "$DOTFILES_DEFAULT_REMOTE" "$DOTFILES_DEFAULT_BRANCH" --quiet > /dev/null
+fi
+
+base_stow="bin,zsh,nvim,tmux,starship"
+
+declare -A config_dirs
+config_dirs=(
+  [macos]="$base_stow,yabai"
+  [arch]="$base_stow,libinput-gestures"
+  [ubuntu]="$base_stow"
+)
+
+supported_os=(
+  "arch"
+  "macos"
+  "ubuntu"
+)
+
+index_of() {
+  local -n arr=$1
+  local value=$2
+
+  for i in "${!arr[@]}"; do
+     if [[ "${arr[$i]}" = "${value}" ]]; then
+         echo "${i}";
+     fi
+  done
+}
+
+bring_top() {
+  local target="$1"
+  local target_idx=$(index_of supported_os "$target")
+
+  local temp="${supported_os[0]}"
+  supported_os[0]="$target"
+  supported_os[$target_idx]="$temp"
+}
+
+OP=$(uname -s | tr '[:upper:]' '[:lower:]') || "$OSTYPE"
+
+case $OP in
+  darwin*) bring_top "macos" ;;
+  linux*) 
+    distro=$(awk -F= '/^NAME/{print $2}' /etc/os-release | tr -d '"' | tr '[:upper:]' '[:lower:]')
+    case $distro in
+      *arch*) bring_top "arch" ;;
+      *ubuntu*) bring_top "ubuntu" ;;
+    esac
+  ;;
+esac
+
+OP=$(gum choose --header="Select your OS: " "${supported_os[@]}")
+
+stow_dir=$(echo ${config_dirs[$OP]} | sed "s/,/ /g")
+
+pushd $DOTFILES_DIR 2>&1 > /dev/null
+for folder in $stow_dir; do
+  stow -D $folder
+  stow $folder
+done
+popd 2>&1 > /dev/null
+
+# TODO: Run ansible play book
+
+echo "All done :) You may need to reload your terminal."
