@@ -71,7 +71,11 @@ alias v2ray='cd ~/Software/v2ray-core && ./v2ray --config=config.json'
 alias sudo='sudo '
 alias lg='l | grep -i'
 alias tm='tmux-sessionizer'
-alias mt='(){ mkdir $1 && tmux-sessionizer $1 }'
+alias mt='(){ mkdir -p $1 && tmux-sessionizer $1 }'
+
+if command bat --version &> /dev/null; then
+  alias cat='bat'
+fi
 
 isLinux
 if [[ $? -eq 0 ]]; then
