@@ -1,3 +1,7 @@
+```console
+bash -c $(curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/auto-updating/install)
+```
+
 # My personal dotfiles 🤝
 
 ![workflow-screenshot](./.github/assets/workflow-screenshot.png)
