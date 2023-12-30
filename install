@@ -23,32 +23,96 @@ HOT="${ORANGE}\xF0\x9F\x94\xA5${NC}"
 WARNING="${GREEN}\xF0\x9F\x9A\xA8${NC}"
 RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
 
+# Exit codes. Ref -> https://www.cyberciti.biz/faq/linux-bash-exit-status-set-exit-statusin-bash/
+EC_PACKAGE_NOT_INSTALLED=65
+EC_FILE_EXISTS=17
+
 set -e
 
+# TODO:
+# - Usage function and --help
+# - Parse args (https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash)
+
 abort() {
-  printf "${RED}%s\n${NC}" "$@" >&2
-  exit 1
+  local msg="$1"
+  local exit_code="${2:-1}"
+
+  printf "${RED}%s\n${NC}" "$msg" >&2
+  exit $exit_code 
 }
 
-if ! command -v gum 2> /dev/null; then
+exists() {
+  local testing_command="$1"
+
+  if command -v $testing_command 2>&1 > /dev/null; then
+    echo 0
+  else
+    echo 1
+  fi
+}
+
+ask_confirmation() {
+  local prompt="$1"
+  local action="$2"
+  local failure_exit_code="${3:-1}"
+
+  #local deny_msg="${4:-Please resolve the issue and retry again.}"
+  local deny_msg="Confirmation denied! Please resolve the issue and retry again."
+  # local accept_msg="${5:-}"
+  local accept_msg="Doing the thing!"
+
+  while true; do
+    read -p "$prompt (y/n) " choice
+    case "$choice" in
+      y|Y)
+        # echo -e $accept_msg
+        $action
+        break
+        ;;
+      n|N)
+        abort "$deny_msg" "$failure_exit_code"
+        ;;
+      *)
+        echo -e "Invalid choice \"$choice\", pass \"y\" or \"n\" to accept or deny confirmation"
+        echo
+    esac
+  done
+}
+
+install_dot() {
+  curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/master/init > temp_dotfiles_executable &&
+  mv temp_dotfiles_executable /usr/local/bin/dotfiles &&
+  chmod +x /usr/local/bin/dotfiles
+}
+
+install_brew() {
+  bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"
+}
+
+if [[ ! $(exists brew) == 0 ]]; then
+  # TODO: see if user passed --install-deps ?
+  echo -e "Could not find \"brew\" in your PATH"
+  ask_confirmation "Do you want to install brew?" install_brew $EC_PACKAGE_NOT_INSTALLED
+fi
+
+if [[ ! $(exists gum) == 0 ]]; then
+  # TODO: see if user passed --install-deps ?
   echo "WARNING"
   echo -e "Installing gum..."
   echo
 fi
 
-if ! command -v ansible 2> /dev/null; then
+if [[ ! $(exists ansible) == 0 ]]; then
+  # TODO: see if user passed --install-deps ?
   echo "WARNING"
   echo -e "Installing ansible..."
   echo
 fi
 
-if command -v dotfiles 2> /dev/null; then
-  abort "There is already a \'dotfiles\' executable found in your \$PATH"
-  # TODO: Ask user to delete it or not
+if [[ $(exists dot) == 0 ]]; then
+  echo -e "There is already a \'dotfiles\' executable found in your \$PATH"
+  # TODO: see if user passed --upgrade ?
+  ask_confirmation "Do you want to re-write/upgrade it?" install_dot $EC_FILE_EXISTS
 fi
 
-curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/master/init > temp_dotfiles_executable &&
-mv temp_dotfiles_executable /usr/local/bin/dotfiles &&
-chmod +x /usr/local/bin/dotfiles
-
-echo -e "Success! Now run \`dotfiles\` (you may need to reload your terminal session)"
+echo -e "Success! Now run \`dot\` (You may need to reload your terminal session)"
