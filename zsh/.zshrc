@@ -36,6 +36,7 @@ fi
 isLinux
 if [[ $? -eq 0 ]]; then
   export PATH=$HOME/bin:/usr/local/bin:$PATH
+  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 fi
 
 ### VARIABLES ###
