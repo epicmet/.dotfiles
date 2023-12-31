@@ -144,10 +144,10 @@ nvim_lsp.phpactor.setup({
   capabilities = capabilities,
 })
 
-nvim_lsp.bashls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
+-- nvim_lsp.bashls.setup({
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+-- })
 
 nvim_lsp.cssls.setup({
   cmd = { 'vscode-css-language-server', '--stdio' },
