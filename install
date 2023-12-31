@@ -125,25 +125,29 @@ install_dot() {
     chmod +x /usr/local/bin/dotfiles
 }
 
+# TODO : Install brew and others in one go.
 install_brew() {
-  bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"
+  echo -e "${WARNING} We can't install brew and other dependencies in one go. Install brew with the command below, reload you terminal session and run the script again."
+
+  echo
+  echo 'bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+
+  exit $EC_PACKAGE_NOT_INSTALLED
 }
 
 install_gum() {
   echo "Installing gum..."
-  exit $EC_NOT_IMPLEMENTED
+  brew install gum
 }
 
 install_ansible() {
   echo "Installing ansible..."
-  exit $EC_NOT_IMPLEMENTED
+  brew install ansible
 }
 
 INSTALL_DEPS_NO_PROMPT=1
 UPGRADE_DOT_SCRIPT_NO_PROMPT=1
 NO_COLOR=1
-
-# TODO: No color option? even using colors in script?
 
 for arg in "$@"; do
   case $arg in
