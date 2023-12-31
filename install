@@ -38,13 +38,13 @@ abort() {
   local exit_code="${2:-1}"
 
   printf "${RED}%s\n${NC}" "$msg" >&2
-  exit $exit_code 
+  exit $exit_code
 }
 
 exists() {
   local testing_command="$1"
 
-  if command -v $testing_command 2>&1 > /dev/null; then
+  if command -v $testing_command 2>&1 >/dev/null; then
     echo 0
   else
     echo 1
@@ -64,25 +64,26 @@ ask_confirmation() {
   while true; do
     read -p "$prompt (y/n) " choice
     case "$choice" in
-      y|Y)
-        # echo -e $accept_msg
-        $action
-        break
-        ;;
-      n|N)
-        abort "$deny_msg" "$failure_exit_code"
-        ;;
-      *)
-        echo -e "Invalid choice \"$choice\", pass \"y\" or \"n\" to accept or deny confirmation"
-        echo
+    y | Y)
+      # echo -e $accept_msg
+      $action
+      break
+      ;;
+    n | N)
+      abort "$deny_msg" "$failure_exit_code"
+      ;;
+    *)
+      echo -e "Invalid choice \"$choice\", pass \"y\" or \"n\" to accept or deny confirmation"
+      echo
+      ;;
     esac
   done
 }
 
 install_dot() {
-  curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/master/init > temp_dotfiles_executable &&
-  mv temp_dotfiles_executable /usr/local/bin/dotfiles &&
-  chmod +x /usr/local/bin/dotfiles
+  curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/master/init >temp_dotfiles_executable &&
+    mv temp_dotfiles_executable /usr/local/bin/dotfiles &&
+    chmod +x /usr/local/bin/dotfiles
 }
 
 install_brew() {
