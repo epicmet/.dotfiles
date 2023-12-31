@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # If the Unique ID is 0, the user has root privileges
-[ "$UID" -eq 0 ] || exec sudo -p "[Need sudo for installing initial script] Password: " "$0" "$@"
+# [ "$UID" -eq 0 ] || exec sudo -p "[Need sudo for installing initial script] Password: " "$0" "$@"
 
 # Color codes
 RED='\033[1;31m'
@@ -24,14 +24,30 @@ WARNING="${GREEN}\xF0\x9F\x9A\xA8${NC}"
 RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
 
 # Exit codes. Ref -> https://www.cyberciti.biz/faq/linux-bash-exit-status-set-exit-statusin-bash/
-EC_PACKAGE_NOT_INSTALLED=65
+EC_SUCCEESS=0
 EC_FILE_EXISTS=17
+EC_NOT_IMPLEMENTED=38
+EC_PACKAGE_NOT_INSTALLED=65
 
 set -e
 
-# TODO:
-# - Usage function and --help
-# - Parse args (https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash)
+show_usage() {
+  local exit_code=${1:-$EC_SUCCEESS}
+
+  printf "%b\n" "$(
+    cat <<EOF
+USAGE: <install-cmd> <flags>
+DESCRIPTION: Simple install command for \"dot\" script
+OPTIONS:
+  -h, --help            Print this help message and exit
+  -i, --install-deps    Install missing dependencies without prompting
+  -u, --upgrade         Re-write the \"dot\" script if exists without prompting
+  --verbose             Show more stuff in case of an error (set -x)
+EOF
+  )"
+
+  exit $exit_code
+}
 
 abort() {
   local msg="$1"
@@ -80,6 +96,22 @@ ask_confirmation() {
   done
 }
 
+ensure_install() {
+  local pkg="$1"
+  local install_pkg_func="$2"
+
+  echo -e "${ARROW} Ensure installing ${pkg}"
+
+  if [[ ! $(exists $pkg) == 0 ]]; then
+    echo -e "${WARNING} Could not find \"${pkg}\" in your PATH"
+    if [[ $INSTALL_DEPS_NO_PROMPT == 0 ]]; then
+      $install_pkg_func
+    else
+      ask_confirmation "Do you want to install ${pkg}?" $install_pkg_func $EC_PACKAGE_NOT_INSTALLED
+    fi
+  fi
+}
+
 install_dot() {
   curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/master/init >temp_dotfiles_executable &&
     mv temp_dotfiles_executable /usr/local/bin/dotfiles &&
@@ -90,30 +122,55 @@ install_brew() {
   bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"
 }
 
-if [[ ! $(exists brew) == 0 ]]; then
-  # TODO: see if user passed --install-deps ?
-  echo -e "Could not find \"brew\" in your PATH"
-  ask_confirmation "Do you want to install brew?" install_brew $EC_PACKAGE_NOT_INSTALLED
-fi
+install_gum() {
+  echo "Installing gum..."
+  exit $EC_NOT_IMPLEMENTED
+}
 
-if [[ ! $(exists gum) == 0 ]]; then
-  # TODO: see if user passed --install-deps ?
-  echo "WARNING"
-  echo -e "Installing gum..."
-  echo
-fi
+install_ansible() {
+  echo "Installing ansible..."
+  exit $EC_NOT_IMPLEMENTED
+}
 
-if [[ ! $(exists ansible) == 0 ]]; then
-  # TODO: see if user passed --install-deps ?
-  echo "WARNING"
-  echo -e "Installing ansible..."
-  echo
-fi
+INSTALL_DEPS_NO_PROMPT=1
+UPGRADE_DOT_SCRIPT_NO_PROMPT=1
+
+# TODO: No color option? even using colors in script?
+
+for arg in "$@"; do
+  case $arg in
+  --verbose)
+    set -x
+    ;;
+  -h | --help)
+    show_usage $EC_SUCCEESS
+    ;;
+  -i | --install-deps)
+    INSTALL_DEPS_NO_PROMPT=0
+    ;;
+  -u | --upgrade)
+    UPGRADE_DOT_SCRIPT_NO_PROMPT=0
+    ;;
+  *)
+    abort "Unkown flag $arg"
+    ;;
+
+  esac
+done
+
+ensure_install brew install_brew
+ensure_install gum install_gum
+ensure_install ansible install_ansible
 
 if [[ $(exists dot) == 0 ]]; then
-  echo -e "There is already a \'dotfiles\' executable found in your \$PATH"
-  # TODO: see if user passed --upgrade ?
-  ask_confirmation "Do you want to re-write/upgrade it?" install_dot $EC_FILE_EXISTS
+  echo -e "There is already a \'dot\' executable found in your \$PATH"
+  if [[ $UPGRADE_DOT_SCRIPT_NO_PROMPT == 0 ]]; then
+    install_dot
+  else
+    ask_confirmation "Do you want to re-write/upgrade it?" install_dot $EC_FILE_EXISTS
+  fi
 fi
 
 echo -e "Success! Now run \`dot\` (You may need to reload your terminal session)"
+
+exit $EC_SUCCEESS
