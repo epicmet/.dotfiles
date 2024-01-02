@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # If the Unique ID is 0, the user has root privileges
-[ "$UID" -eq 0 ] || exec sudo -p "[Need sudo for installing initial script] Password: " "$0" "$@"
+# [ "$UID" -eq 0 ] || exec sudo -p "[Need sudo for installing initial script] Password: " "$0" "$@"
 
 # Exit codes. Ref -> https://www.cyberciti.biz/faq/linux-bash-exit-status-set-exit-statusin-bash/
 EC_SUCCEESS=0
@@ -43,14 +43,18 @@ show_usage() {
 
   printf "%b\n" "$(
     cat <<EOF
-USAGE: <install-cmd> <flags>
-DESCRIPTION: Simple install command for \"dot\" script
-OPTIONS:
-  -h, --help            Print this help message and exit
-  -i, --install-deps    Install missing dependencies without prompting
-  -u, --upgrade         Re-write the \"dot\" script if exists without prompting
+USAGE:
+  <install-cmd> <flags>
+
+DESCRIPTION:
+  Simple install command for \"dot\" script
+
+FLAGS:
+  --help, -h            Print this help message and exit
+  --install-deps, -i    Install missing dependencies without prompting
+  --upgrade, -u         Re-write the \"dot\" script if exists without prompting
   --verbose             Show more stuff in case of an error (set -x)
-  -n, --no-color        Run script without colors or emojis
+  --no-color, -n        Run script without colors or emojis
 EOF
   )"
 
