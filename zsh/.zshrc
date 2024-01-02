@@ -26,6 +26,11 @@ export PATH=$PATH:~/Software/bin:~/.cargo/bin # Rust
 export PATH="$HOME/.deno/bin:$PATH" # Deno
 export PATH="$HOME/Software/git-fuzzy/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH" # Go binaries
+export PATH="$HOME/.basher/bin:$PATH"   ##basher5ea843
+
+if command -v basher 2>&1 >/dev/null; then
+  eval "$(basher init - zsh)"             ##basher5ea843
+fi
 
 isMac
 if [[ $? -eq 0 ]]; then
