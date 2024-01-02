@@ -120,9 +120,9 @@ ensure_install() {
 }
 
 install_dot() {
-  curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/master/init >temp_dotfiles_executable &&
-    mv temp_dotfiles_executable /usr/local/bin/dotfiles &&
-    chmod +x /usr/local/bin/dotfiles
+  curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/master/dot >temp_dot_executable &&
+    mv temp_dot_executable /usr/local/bin/dot &&
+    chmod +x /usr/local/bin/dot
 }
 
 # TODO : Install brew and others in one go.
