@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # If the Unique ID is 0, the user has root privileges
-# [ "$UID" -eq 0 ] || exec sudo -p "[Need sudo for installing initial script] Password: " "$0" "$@"
+[ "$UID" -eq 0 ] || exec sudo -p "[Need sudo for installing initial script] Password: " "$0" "$@"
 
 # Exit codes. Ref -> https://www.cyberciti.biz/faq/linux-bash-exit-status-set-exit-statusin-bash/
 EC_SUCCEESS=0
@@ -185,8 +185,9 @@ ensure_install gum install_gum
 ensure_install ansible install_ansible
 
 if [[ $(exists dot) == 0 ]]; then
-  echo -e "There is already a \'dot\' executable found in your \$PATH"
+  echo -e "${WARNING} There is already a \'dot\' executable found in your \$PATH"
   if [[ $UPGRADE_DOT_SCRIPT_NO_PROMPT == 0 ]]; then
+    echo "Updating dot..."
     install_dot
   else
     ask_confirmation "Do you want to re-write/upgrade it?" install_dot $EC_FILE_EXISTS
