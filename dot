@@ -14,10 +14,7 @@ EC_SUCCEESS=0
 EC_FAILURE=1
 EC_NOT_IMPLEMENTED=38
 
-# TODO: Parse flags
-# --yes? -> skip confirmation of OS and choose the detected one
-
-# TODO: Add this? set -Eeuo pipefail
+set -Eeuo pipefail
 
 trap cleanup SIGINT SIGTERM ERR EXIT
 
@@ -59,11 +56,10 @@ setup_colors() {
 		CLOCK="${GREEN}\xE2\x8C\x9B${NC}"
 		ARROW="${SEA}\xE2\x96\xB6${NC}"
 		BOOK="${RED}\xF0\x9F\x93\x8B${NC}"
-		HOT="${ORANGE}\xF0\x9F\x94\xA5${NC}"
 		WARNING="${GREEN}\xF0\x9F\x9A\xA8${NC}"
 		RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
 	else
-		RED='' YELLOW='' BLUE='' SEA='' GREEN='' CYAN='' NC='' CHECK_MARK='' X_MARK='' PIN='' CLOCK='' ARROW='' BOOK='' HOT='' WARNING='' RIGHT_ANGLE=''
+		RED='' YELLOW='' BLUE='' SEA='' GREEN='' CYAN='' NC='' CHECK_MARK='' X_MARK='' PIN='' CLOCK='' ARROW='' BOOK='' WARNING='' RIGHT_ANGLE=''
 	fi
 }
 
@@ -102,6 +98,7 @@ DESCRIPTION:
 FLAGS:
   --help, -h            Print this help message and exit
   --no-color, -n        Run script without colors or emojis
+  --trust, -t           Trust the operating system detection
   --verbose             Show more stuff in case of an error (set -x)
 
 SUB COMMANDS:
@@ -117,11 +114,12 @@ EOF
 }
 
 NO_COLOR=1
+TRUST_OP_DETECTION=1
 
 setup_colors
 
 # Parse dot flags
-while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do
+while [[ $# -ge 1 && "$1" =~ ^- && ! "$1" == "--" ]]; do
 	case "$1" in
 	--verbose)
 		set -x
@@ -130,6 +128,10 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do
 	-n | --no-color)
 		NO_COLOR=0
 		setup_colors
+		shift
+		;;
+	-t | --trust)
+		TRUST_OP_DETECTION=0
 		shift
 		;;
 	-h | --help)
@@ -254,7 +256,11 @@ linux*)
 	;;
 esac
 
-OP=$(gum choose --header="Select your OS: " "${supported_os[@]}")
+if [[ $TRUST_OP_DETECTION == 0 ]]; then
+	OP="${supported_os[0]}"
+else
+	OP=$(gum choose --header="Select your OS: " "${supported_os[@]}")
+fi
 
 stow_dir=$(echo ${config_dirs[$OP]} | sed "s/,/ /g")
 
