@@ -4,10 +4,10 @@
 DOTFILES_DIR="$HOME/.dotfiles"
 DOTFILES_DEFAULT_BRANCH="master"
 DOTFILES_DEFAULT_REMOTE="origin"
-# TODO: Configure SSH
-# DOTFILES_GIT_URL="git@github.com:MahdiAghaei1/pinket.git"
-DOTFILES_GIT_URL="https://github.com/MahdiAghaei1/.dotfiles.git"
+DOTFILES_SSH_GIT_URL="git@github.com:MahdiAghaei1/.dotfiles.git"
+DOTFILES_HTTP_GIT_URL="https://github.com/MahdiAghaei1/.dotfiles.git"
 TEMP_EXECUTABLE="temp_dot_executable"
+SSH_DIR="$HOME/.ssh"
 
 # Exit codes. Ref -> https://www.cyberciti.biz/faq/linux-bash-exit-status-set-exit-statusin-bash/
 EC_SUCCEESS=0
@@ -106,7 +106,8 @@ FLAGS:
 
 SUB COMMANDS:
   <NO-SUB-COMMAND>      Without any sub commands the script runs the regular job of updating dotfiles
-  update                Update the latest \"dot\" script from the repo
+  update                Update the latest "dot" script from the repo
+  hts                   Change ".dotfiles" remote from HTTP to SSH
 
 Run "dot <sub-command> --help" to get more information about a command
 EOF
@@ -162,6 +163,18 @@ dot__update() {
 	exit $EC_SUCCEESS
 }
 
+dot__hts() {
+	local curr_remote=$(git -C "$DOTFILES_DIR" remote get-url "$DOTFILES_DEFAULT_REMOTE")
+	if [[ "${curr_remote::4}" == "http" ]]; then
+		git -C "$DOTFILES_DIR" remote set-url "$DOTFILES_DEFAULT_REMOTE" "$DOTFILES_SSH_GIT_URL"
+		echo -e "${CHECK_MARK} Remote successfully updated."
+		exit $EC_SUCCEESS
+	else
+		echo -e "${X_MARK} Current \".dotfiles\" remote is not based on http: $curr_remote"
+		exit $EC_FAILURE
+	fi
+}
+
 # Parse sub command + its flags
 if [[ $# -gt 0 ]]; then
 	sub_cmd="$1"
@@ -177,9 +190,17 @@ if [[ $# -gt 0 ]]; then
 	exit $EC_SUCCEESS
 fi
 
+################ <NO-SUB-COMMAND> Flow ################
+
 if [[ ! -d "$DOTFILES_DIR" ]]; then
+	clone_url="$DOTFILES_HTTP_GIT_URL"
+	# TODO: Better ssh validation?
+	if [[ -d "$SSH_DIR" ]]; then
+		clone_url="$DOTFILES_SSH_GIT_URL"
+	fi
+
 	gum spin -s line --title="Cloning the git repository into \"$HOME/.dotfiles\"..." -- \
-		git clone --quiet "$DOTFILES_GIT_URL" "$DOTFILES_DIR" 2>&1 >/dev/null
+		git clone --quiet "$clone_url" "$DOTFILES_DIR" 2>&1 >/dev/null
 else
 	gum spin -s line --title="Updating the git repository..." -- \
 		git -C "$DOTFILES_DIR" pull "$DOTFILES_DEFAULT_REMOTE" "$DOTFILES_DEFAULT_BRANCH" --quiet >/dev/null
