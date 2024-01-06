@@ -26,6 +26,11 @@ export PATH=$PATH:~/Software/bin:~/.cargo/bin # Rust
 export PATH="$HOME/.deno/bin:$PATH" # Deno
 export PATH="$HOME/Software/git-fuzzy/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH" # Go binaries
+export PATH="$HOME/.basher/bin:$PATH"   ##basher5ea843
+
+if command -v basher 2>&1 >/dev/null; then
+  eval "$(basher init - zsh)"             ##basher5ea843
+fi
 
 isMac
 if [[ $? -eq 0 ]]; then
@@ -36,6 +41,7 @@ fi
 isLinux
 if [[ $? -eq 0 ]]; then
   export PATH=$HOME/bin:/usr/local/bin:$PATH
+  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 fi
 
 ### VARIABLES ###
@@ -71,7 +77,11 @@ alias v2ray='cd ~/Software/v2ray-core && ./v2ray --config=config.json'
 alias sudo='sudo '
 alias lg='l | grep -i'
 alias tm='tmux-sessionizer'
-alias mt='(){ mkdir $1 && tmux-sessionizer $1 }'
+alias mt='(){ mkdir -p $1 && tmux-sessionizer $1 }'
+
+if command bat --version &> /dev/null; then
+  alias cat='bat'
+fi
 
 isLinux
 if [[ $? -eq 0 ]]; then

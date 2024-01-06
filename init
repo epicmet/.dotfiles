@@ -1,8 +1,0 @@
-#!/bin/bash
-
-STOW_FOLDERS=$(echo $STOW_FOLDERS | sed "s/,/ /g")
-
-for folder in $STOW_FOLDERS; do
-  stow -D $folder
-  stow $folder
-done
