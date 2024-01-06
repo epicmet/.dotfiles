@@ -165,13 +165,14 @@ dot__update() {
 # Parse sub command + its flags
 if [[ $# -gt 0 ]]; then
 	sub_cmd="$1"
+	sub_cmd_args="${@-}"
 	shift
 
 	if [[ $sub_cmd == "--" ]]; then
 		abort "Not implemented support for \"--\"" $EC_NOT_IMPLEMENTED
 	fi
 
-	run_if_exists "dot__$sub_cmd" "$@" "The sub command \"$sub_cmd\" not found!"
+	run_if_exists "dot__$sub_cmd" "$sub_cmd_args" "The sub command \"$sub_cmd\" not found!"
 
 	exit $EC_SUCCEESS
 fi
