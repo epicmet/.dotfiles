@@ -1,0 +1,9 @@
+- name: Dotfiles!
+  hosts: localhost
+  connection: local
+  vars:
+    # TODO: Get from git-submodule?
+    ssh_source_key: "./ssh/id_rsa"
+    ssh_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+  tasks:
+    - include: "tasks/ssh.yml"

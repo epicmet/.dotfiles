@@ -1,0 +1,37 @@
+- name: Ensure .ssh directory exists.
+  file:
+    dest: "{{ ssh_dest_key | dirname }}"
+    mode: 0700
+    state: directory
+  tags:
+    - initial
+    - ssh
+- name: Install private ssh key
+  copy:
+    src: "{{ ssh_source_key }}"
+    dest: "{{ ssh_dest_key }}"
+    mode: 0600
+  tags:
+    - initial
+    - ssh
+- name: Install public ssh key
+  copy:
+    src: "{{ ssh_source_key }}.pub"
+    dest: "{{ ssh_dest_key }}.pub"
+    mode: 0644
+  tags:
+    - initial
+    - ssh
+- name: Set authorized key took from file
+  authorized_key:
+    user: "{{ lookup('env', 'USER') }}"
+    state: present
+    key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
+  with_fileglob:
+    - "{{ lookup('env', 'HOME') }}/.ssh/*.pub"
+  tags:
+    - initial
+    - ssh
+- name: Change dotfiles remote to ssh
+  shell:
+    cmd: dot hts 2>&1 >/dev/null
