@@ -192,6 +192,8 @@ if [[ $(exists dot) == 0 ]]; then
   else
     ask_confirmation "Do you want to re-write/upgrade it?" install_dot $EC_FILE_EXISTS
   fi
+else
+  install_dot
 fi
 
 echo -e "Success! Now run \`dot init\` (You may need to reload your terminal session)"
