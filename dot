@@ -8,6 +8,7 @@ DOTFILES_SSH_GIT_URL="git@github.com:MahdiAghaei1/.dotfiles.git"
 DOTFILES_HTTP_GIT_URL="https://github.com/MahdiAghaei1/.dotfiles.git"
 TEMP_EXECUTABLE="temp_dot_executable"
 SSH_DIR="$HOME/.ssh"
+ANSIBLE_ENTRY="$DOTFILES_DIR/ansible/local.yml"
 
 # Exit codes. Ref -> https://www.cyberciti.biz/faq/linux-bash-exit-status-set-exit-statusin-bash/
 EC_SUCCEESS=0
@@ -122,8 +123,11 @@ FLAGS:
   --verbose             Show more stuff in case of an error (set -x)
 
 SUB COMMANDS:
-  <NO-SUB-COMMAND>      Without any sub commands the script runs the regular job of updating dotfiles
+  <NO-SUB-COMMAND>      No sub-command is equivalent \"dot stow\" && \"dot ans update\"
   update                Update the latest "dot" script from the repo
+  stow                  Update the config files using stow
+  ans init              Runs the \"initial\" tag of ansible playbook
+  ans update            Run all ansible playbooks but \"initial\"
   hts                   Change ".dotfiles" remote from HTTP to SSH
 
 Run "dot <sub-command> --help" to get more information about a command
@@ -243,9 +247,31 @@ dot__stow() {
 }
 
 dot__ans() {
-	echo "ansible sub command"
+	if [[ $# -gt 0 ]]; then
+		local ans_sub_cmd="$1"
+		local ans_sub_cmd_args="${@-}"
+		shift
 
-	# ansible-playbook --ask-vault-pass ansible/local.yml
+		if [[ $ans_sub_cmd == "--" ]]; then
+			abort "Not implemented support for \"--\"" $EC_NOT_IMPLEMENTED
+		fi
+
+		run_if_exists "dot__ans__$ans_sub_cmd" "$ans_sub_cmd_args" "The sub command \"ans\" does not have \"$ans_sub_cmd\" sub command!"
+
+		exit $EC_SUCCEESS
+	fi
+}
+
+dot__ans__init() {
+	echo -e "${RIGHT_ANGLE} Running \"initial\" ansible tag..."
+
+	ansible-playbook -t initial --ask-vault-pass "$ANSIBLE_ENTRY"
+}
+
+dot__ans__update() {
+	echo -e "${RIGHT_ANGLE} Syncing packages using ansible..."
+
+	ansible-playbook --skip-tags initial "$ANSIBLE_ENTRY"
 }
 
 if [[ ! -d "$DOTFILES_DIR" ]]; then
@@ -264,8 +290,8 @@ fi
 
 if [[ $# -gt 0 ]]; then
 	sub_cmd="$1"
-	sub_cmd_args="${@-}"
 	shift
+	sub_cmd_args="${@-}"
 
 	if [[ $sub_cmd == "--" ]]; then
 		abort "Not implemented support for \"--\"" $EC_NOT_IMPLEMENTED
@@ -276,8 +302,8 @@ if [[ $# -gt 0 ]]; then
 	exit $EC_SUCCEESS
 else
 	### No sub command ###
-	# TODO: Decide what to do here
 	dot__stow
+	dot__ans__update
 fi
 
 echo -e "${CHECK_MARK} All done >:) You may want to reload your terminal. ${CYAN}Happy hacking!${NC}"
