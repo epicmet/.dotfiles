@@ -124,6 +124,7 @@ FLAGS:
 
 SUB COMMANDS:
   <NO-SUB-COMMAND>      No sub-command is equivalent \"dot stow\" && \"dot ans update\"
+  init                  This is equivalent \"dot ans init\" && \"dot hts\" && \"dot stow\"
   update                Update the latest "dot" script from the repo
   stow                  Update the config files using stow
   ans init              Runs the \"initial\" tag of ansible playbook
@@ -194,11 +195,15 @@ dot__hts() {
 	if [[ "${curr_remote::4}" == "http" ]]; then
 		git -C "$DOTFILES_DIR" remote set-url "$DOTFILES_DEFAULT_REMOTE" "$DOTFILES_SSH_GIT_URL"
 		echo -e "${CHECK_MARK} Remote successfully updated."
-		exit $EC_SUCCEESS
 	else
-		echo -e "${X_MARK} Current \".dotfiles\" remote is not based on http: $curr_remote"
-		exit $EC_FAILURE
+		echo -e "${WARNING} Current \".dotfiles\" remote is not based on http: $curr_remote"
 	fi
+}
+
+dot__init() {
+	dot__ans__init
+	dot__hts
+	dot__stow
 }
 
 dot__stow() {
@@ -249,16 +254,17 @@ dot__stow() {
 dot__ans() {
 	if [[ $# -gt 0 ]]; then
 		local ans_sub_cmd="$1"
-		local ans_sub_cmd_args="${@-}"
 		shift
+		local ans_sub_cmd_args="${@-}"
 
 		if [[ $ans_sub_cmd == "--" ]]; then
 			abort "Not implemented support for \"--\"" $EC_NOT_IMPLEMENTED
 		fi
 
 		run_if_exists "dot__ans__$ans_sub_cmd" "$ans_sub_cmd_args" "The sub command \"ans\" does not have \"$ans_sub_cmd\" sub command!"
-
-		exit $EC_SUCCEESS
+	else
+		echo -e "${X_MARK} no sub command provided for \"ans\". See \"dot --help\""
+		exit $EC_FAILURE
 	fi
 }
 

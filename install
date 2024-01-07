@@ -194,6 +194,6 @@ if [[ $(exists dot) == 0 ]]; then
   fi
 fi
 
-echo -e "Success! Now run \`dot\` (You may need to reload your terminal session)"
+echo -e "Success! Now run \`dot init\` (You may need to reload your terminal session)"
 
 exit $EC_SUCCEESS

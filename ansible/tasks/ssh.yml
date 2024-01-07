@@ -32,6 +32,3 @@
   tags:
     - initial
     - ssh
-- name: Change dotfiles remote to ssh
-  shell:
-    cmd: dot hts 2>&1 >/dev/null
