@@ -84,6 +84,26 @@ run_if_exists() {
 	fi
 }
 
+index_of() {
+	local -n arr=$1
+	local value=$2
+
+	for i in "${!arr[@]}"; do
+		if [[ "${arr[$i]}" = "${value}" ]]; then
+			echo "${i}"
+		fi
+	done
+}
+
+bring_top() {
+	local target="$1"
+	local target_idx=$(index_of supported_os "$target")
+
+	local temp="${supported_os[0]}"
+	supported_os[0]="$target"
+	supported_os[$target_idx]="$temp"
+}
+
 show_usage() {
 	local exit_code=${1:-$EC_SUCCEESS}
 
@@ -177,22 +197,56 @@ dot__hts() {
 	fi
 }
 
-# Parse sub command + its flags
-if [[ $# -gt 0 ]]; then
-	sub_cmd="$1"
-	sub_cmd_args="${@-}"
-	shift
+dot__stow() {
+	base_stow="bin,zsh,nvim,tmux,starship"
 
-	if [[ $sub_cmd == "--" ]]; then
-		abort "Not implemented support for \"--\"" $EC_NOT_IMPLEMENTED
+	declare -A config_dirs
+	config_dirs=(
+		[macos]="$base_stow,yabai"
+		[arch]="$base_stow,libinput-gestures"
+		[ubuntu]="$base_stow"
+	)
+
+	supported_os=(
+		"arch"
+		"macos"
+		"ubuntu"
+	)
+
+	OP=$(uname -s | tr '[:upper:]' '[:lower:]') || "$OSTYPE"
+
+	case $OP in
+	darwin*) bring_top "macos" ;;
+	linux*)
+		distro=$(awk -F= '/^NAME/{print $2}' /etc/os-release | tr -d '"' | tr '[:upper:]' '[:lower:]')
+		case $distro in
+		*arch*) bring_top "arch" ;;
+		*ubuntu*) bring_top "ubuntu" ;;
+		esac
+		;;
+	esac
+
+	if [[ $TRUST_OP_DETECTION == 0 ]]; then
+		OP="${supported_os[0]}"
+	else
+		OP=$(gum choose --header="Select your OS: " "${supported_os[@]}")
 	fi
 
-	run_if_exists "dot__$sub_cmd" "$sub_cmd_args" "The sub command \"$sub_cmd\" not found!"
+	stow_dir=$(echo ${config_dirs[$OP]} | sed "s/,/ /g")
 
-	exit $EC_SUCCEESS
-fi
+	pushd $DOTFILES_DIR 2>&1 >/dev/null
+	for folder in $stow_dir; do
+		stow -D $folder
+		stow $folder
+	done
+	popd 2>&1 >/dev/null
+}
 
-################ <NO-SUB-COMMAND> Flow ################
+dot__ans() {
+	echo "ansible sub command"
+
+	# ansible-playbook --ask-vault-pass ansible/local.yml
+}
 
 if [[ ! -d "$DOTFILES_DIR" ]]; then
 	clone_url="$DOTFILES_HTTP_GIT_URL"
@@ -208,69 +262,22 @@ else
 		git -C "$DOTFILES_DIR" pull "$DOTFILES_DEFAULT_REMOTE" "$DOTFILES_DEFAULT_BRANCH" --quiet >/dev/null
 fi
 
-base_stow="bin,zsh,nvim,tmux,starship"
+if [[ $# -gt 0 ]]; then
+	sub_cmd="$1"
+	sub_cmd_args="${@-}"
+	shift
 
-declare -A config_dirs
-config_dirs=(
-	[macos]="$base_stow,yabai"
-	[arch]="$base_stow,libinput-gestures"
-	[ubuntu]="$base_stow"
-)
+	if [[ $sub_cmd == "--" ]]; then
+		abort "Not implemented support for \"--\"" $EC_NOT_IMPLEMENTED
+	fi
 
-supported_os=(
-	"arch"
-	"macos"
-	"ubuntu"
-)
+	run_if_exists "dot__$sub_cmd" "$sub_cmd_args" "The sub command \"$sub_cmd\" not found!"
 
-index_of() {
-	local -n arr=$1
-	local value=$2
-
-	for i in "${!arr[@]}"; do
-		if [[ "${arr[$i]}" = "${value}" ]]; then
-			echo "${i}"
-		fi
-	done
-}
-
-bring_top() {
-	local target="$1"
-	local target_idx=$(index_of supported_os "$target")
-
-	local temp="${supported_os[0]}"
-	supported_os[0]="$target"
-	supported_os[$target_idx]="$temp"
-}
-
-OP=$(uname -s | tr '[:upper:]' '[:lower:]') || "$OSTYPE"
-
-case $OP in
-darwin*) bring_top "macos" ;;
-linux*)
-	distro=$(awk -F= '/^NAME/{print $2}' /etc/os-release | tr -d '"' | tr '[:upper:]' '[:lower:]')
-	case $distro in
-	*arch*) bring_top "arch" ;;
-	*ubuntu*) bring_top "ubuntu" ;;
-	esac
-	;;
-esac
-
-if [[ $TRUST_OP_DETECTION == 0 ]]; then
-	OP="${supported_os[0]}"
+	exit $EC_SUCCEESS
 else
-	OP=$(gum choose --header="Select your OS: " "${supported_os[@]}")
+	### No sub command ###
+	# TODO: Decide what to do here
+	dot__stow
 fi
-
-stow_dir=$(echo ${config_dirs[$OP]} | sed "s/,/ /g")
-
-pushd $DOTFILES_DIR 2>&1 >/dev/null
-for folder in $stow_dir; do
-	stow -D $folder
-	stow $folder
-done
-popd 2>&1 >/dev/null
-
-# TODO: Run ansible play book
 
 echo -e "${CHECK_MARK} All done >:) You may want to reload your terminal. ${CYAN}Happy hacking!${NC}"
