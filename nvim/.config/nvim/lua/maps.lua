@@ -60,3 +60,11 @@ keymap.set('n', '<leader>rp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Lef
 -- Beginning and end of the line
 keymap.set('n', 'H', '^')
 keymap.set('n', 'L', '$')
+
+function toggle_manual_format_keymap()
+  local temp = vim.g.auto_prettier_format_onsave
+  vim.g.auto_prettier_format_onsave = not temp
+  print('Auto format on save ' .. (tostring(vim.g.auto_prettier_format_onsave)))
+end
+
+keymap.set('n', '<leader>tf', toggle_manual_format_keymap)

@@ -25,7 +25,7 @@ null_ls.setup({
         group = augroup_format,
         buffer = 0,
         callback = function()
-          vim.lsp.buf.format({ sync = true })
+          if vim.g.auto_prettier_format_onsave then vim.lsp.buf.format({ sync = true }) end
         end,
       })
     end
