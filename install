@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# If the Unique ID is 0, the user has root privileges
-[ "$UID" -eq 0 ] || exec sudo -p "[Need sudo for installing initial script] Password: " "$0" "$@"
-
 # Exit codes. Ref -> https://www.cyberciti.biz/faq/linux-bash-exit-status-set-exit-statusin-bash/
 EC_SUCCEESS=0
 EC_FAILURE=1
@@ -125,9 +122,13 @@ ensure_install() {
 }
 
 install_dot() {
-  curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/master/dot >temp_dot_executable &&
-    mv temp_dot_executable /usr/local/bin/dot &&
-    chmod +x /usr/local/bin/dot
+  curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/master/dot >temp_dot_executable
+
+  # If the Unique ID is 0, the user has root privileges
+  if [ ! "$UID" -eq 0 ]; then
+    sudo -p "[Need sudo for installing dot in your path] Password: " mv temp_dot_executable /usr/local/bin/dot &&
+      sudo chmod +x /usr/local/bin/dot
+  fi
 }
 
 # TODO : Install brew and others in one go.
