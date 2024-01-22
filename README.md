@@ -1,6 +1,10 @@
+> New `.dotfiles` is in progress and is changing a lot...
+
 ```console
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/master/install)"
 ```
+
+_Until future Mahdi decides to use `ansible-vault` properly, when adding a new private thing, use `ansible-vault encrypt <THAT_THING>` to encrypt it (use main vault password)._
 
 # My personal dotfiles 🤝
 

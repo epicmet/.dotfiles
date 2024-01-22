@@ -5,5 +5,8 @@
     # TODO: Get from git-submodule?
     ssh_source_key: "{{ lookup('env', 'HOME') }}/.dotfiles/ssh/id_ed25519"
     ssh_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+    ssh_config_source: "{{ lookup('env', 'HOME') }}/.dotfiles/ssh/config"
+    ssh_config_dest: "{{ lookup('env', 'HOME') }}/.ssh/config"
   tasks:
-    - include: "tasks/ssh.yml"
+    - include_tasks: "tasks/ssh.yml"
+  tags: always
