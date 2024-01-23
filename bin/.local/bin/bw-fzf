@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+bw list items | jq -r 'map(select(.id and .name and .login.username)) | map("\(.id) \(.name) \(.login.username)")[]' | fzf --cycle --inline-info --ansi --layout=reverse --prompt="-> " --with-nth=2,3 --preview="echo {} | awk '{print \$1}' | xargs -I {} bw list items --search {} | jq -C" | awk '{print $1}' | xargs -I {} bw get password {}
