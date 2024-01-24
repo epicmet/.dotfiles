@@ -1,3 +1,33 @@
 #!/usr/bin/env bash
 
-bw list items | jq -r 'map(select(.id and .name and .login.username)) | map("\(.id) \(.name) \(.login.username)")[]' | fzf --cycle --inline-info --ansi --layout=reverse --prompt="-> " --with-nth=2,3 --preview="echo {} | awk '{print \$1}' | xargs -I {} bw list items --search {} | jq -C" | awk '{print $1}' | xargs -I {} bw get password {}
+is_mac() {
+	if [ "$(uname -s)" = "Darwin" ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+is_linux() {
+	if [ "$(uname -s)" = "Linux" ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+main() {
+	local password=$(
+		bw list items | jq -r 'map(select(.id and .name and .login.username)) | map("\(.id) \(.name) \(.login.username)")[]' | fzf --cycle --inline-info --ansi --layout=reverse --prompt="-> " --with-nth=2,3 --preview="echo {} | awk '{print \$1}' | xargs -I {} bw list items --search {} | jq -C" | awk '{print $1}' | xargs -I {} bw get password {}
+	)
+
+	if [ -n "$password" ]; then
+		if is_mac; then
+			echo -n "$password" | pbcopy
+		elif is_linux; then
+			echo -n "$password" | wl-copy
+		fi
+	fi
+}
+
+main
