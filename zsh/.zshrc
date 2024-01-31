@@ -79,10 +79,10 @@ alias lg='la | grep -i'
 alias tm='tmux-sessionizer'
 alias mt='(){ mkdir -p $1 && tmux-sessionizer $1 $2 }'
 alias bwu='bw unlock --raw | xargs -I % sed -i "s|\(BW_SESSION=\)\(.*\)|\1%|g" ~/.private_env'
+alias bws='bw-fzf rbw'
 if command bat --version &> /dev/null; then
   alias cat='bat'
 fi
-alias bws='bw-fzf'
 
 isLinux
 if [[ $? -eq 0 ]]; then

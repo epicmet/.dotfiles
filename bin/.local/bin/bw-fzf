@@ -16,10 +16,42 @@ is_linux() {
 	fi
 }
 
-main() {
+unlock_bw() {
+	bw unlock --raw | xargs -I % sed -i "s|\(BW_SESSION=\)\(.*\)|\1%|g" ~/.private_env
+}
+
+# FIXME: Not working as expected
+get_password_bw() {
+	local status=$(bw status | jq '.status' | tr -d '"')
+	if [[ "$status" == "locked" ]]; then
+		unlock_bw
+	fi
+
 	local password=$(
 		bw list items | jq -r 'map(select(.id and .name and .login.username)) | map("\(.id) \(.name) \(.login.username)")[]' | fzf --cycle --inline-info --ansi --layout=reverse --prompt="-> " --with-nth=2,3 --preview="echo {} | awk '{print \$1}' | xargs -I {} bw list items --search {} | jq -C" | awk '{print $1}' | xargs -I {} bw get password {}
 	)
+
+	echo "$password"
+}
+
+get_password_rbw() {
+	local password=$(
+		rbw list --fields id --fields name | fzf --cycle --inline-info --ansi --layout=reverse --prompt="-> " --with-nth=1,2 --preview="echo {} | bat" | awk '{print $1}' | xargs -I {} rbw get {}
+	)
+
+	echo "$password"
+}
+
+main() {
+	local agent=$1
+	shift
+
+	if [[ "$agent" != "bw" && "$agent" != "rbw" ]]; then
+		echo "The agent must be \"bw\" or \"rbw\". Got: \"$agent\" instead"
+		exit 1
+	fi
+
+	local password=$("get_password_$agent" "$@")
 
 	if [ -n "$password" ]; then
 		if is_mac; then
@@ -30,4 +62,4 @@ main() {
 	fi
 }
 
-main
+main "$@"
