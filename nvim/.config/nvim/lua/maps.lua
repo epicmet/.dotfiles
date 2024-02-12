@@ -61,7 +61,13 @@ keymap.set('n', '<leader>rp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Lef
 keymap.set('n', 'H', '^')
 keymap.set('n', 'L', '$')
 
-function toggle_manual_format_keymap()
+-- Quickfix list
+keymap.set('n', ']q', '<cmd>cnext<CR>zz')
+keymap.set('n', '[q', '<cmd>cprev<CR>zz')
+keymap.set('n', '<leader>qo', '<cmd>copen<CR>')
+keymap.set('n', '<leader>qq', '<cmd>cclose<CR>')
+
+local function toggle_manual_format_keymap()
   local temp = vim.g.auto_prettier_format_onsave
   vim.g.auto_prettier_format_onsave = not temp
   print('Auto format on save ' .. (tostring(vim.g.auto_prettier_format_onsave)))

@@ -65,3 +65,5 @@ todo.setup({
     -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
   },
 })
+
+vim.keymap.set('n', '<leader>tq', '<cmd>TodoQuickFix<CR>zz')
