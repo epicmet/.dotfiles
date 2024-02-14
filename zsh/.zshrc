@@ -96,6 +96,7 @@ fi
 # TODO: Update this to go at the end of the line after search with this built-in functions: ending-of-line
 bindkey "^p" history-beginning-search-backward
 bindkey "^n" history-beginning-search-forward
+bindkey -e # This makes Ctrl-A and Ctrl-E work as expected
 
 # Case insensitive
 autoload -Uz compinit && compinit
