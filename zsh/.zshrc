@@ -93,10 +93,13 @@ if [[ $? -eq 0 ]]; then
 fi
 
 ### KEY BINDING ###
-# TODO: Update this to go at the end of the line after search with this built-in functions: ending-of-line
-bindkey "^p" history-beginning-search-backward
-bindkey "^n" history-beginning-search-forward
 bindkey -e # This makes Ctrl-A and Ctrl-E work as expected
+
+bindkey "^p" up-line-or-search
+bindkey "^n" down-line-or-search
+# These are the same as above, but the cursor won't go at the end
+# bindkey "^p" history-beginning-search-backward
+# bindkey "^n" history-beginning-search-forward
 
 # Case insensitive
 autoload -Uz compinit && compinit
