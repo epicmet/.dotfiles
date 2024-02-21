@@ -95,13 +95,15 @@ fi
 ### KEY BINDING ###
 bindkey -e # This makes Ctrl-A and Ctrl-E work as expected
 
-bindkey "^p" up-line-or-search
-bindkey "^n" down-line-or-search
-# These are the same as above, but the cursor won't go at the end
-# bindkey "^p" history-beginning-search-backward
-# bindkey "^n" history-beginning-search-forward
+bindkey "^p" history-beginning-search-backward
+bindkey "^n" history-beginning-search-forward
+
+# These are the same as above, but the cursor will go at the end
+# bindkey "^p" up-line-or-search
+# bindkey "^n" down-line-or-search
 
 # Case insensitive
+fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
