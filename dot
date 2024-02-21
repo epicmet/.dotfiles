@@ -207,7 +207,7 @@ dot__init() {
 }
 
 dot__stow() {
-	base_stow="bin,zsh,nvim,tmux,starship"
+	base_stow="bin,zsh,nvim,tmux,starship,wezterm"
 
 	declare -A config_dirs
 	config_dirs=(
