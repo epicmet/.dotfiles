@@ -125,11 +125,12 @@ FLAGS:
 SUB COMMANDS:
   <NO-SUB-COMMAND>      No sub-command is equivalent \"dot stow\" && \"dot ans update\"
   init                  This is equivalent \"dot ans init\" && \"dot hts\" && \"dot stow\"
-  update                Update the latest "dot" script from the repo
+  pull                  Either clone dotfiles or pull latest commits from the master branch
+  update                Update the latest \"dot\" script from the repo
   stow                  Update the config files using stow
   ans init              Runs the \"initial\" tag of ansible playbook
   ans update            Run all ansible playbooks but \"initial\"
-  hts                   Change ".dotfiles" remote from HTTP to SSH
+  hts                   Change \".dotfiles\" remote from HTTP to SSH
 
 Run "dot <sub-command> --help" to get more information about a command
 EOF
@@ -169,6 +170,22 @@ while [[ $# -ge 1 && "$1" =~ ^- && ! "$1" == "--" ]]; do
 	esac
 done
 
+dot__pull() {
+	if [[ ! -d "$DOTFILES_DIR" ]]; then
+		clone_url="$DOTFILES_HTTP_GIT_URL"
+		# TODO: Better ssh validation?
+		if [[ -d "$SSH_DIR" ]]; then
+			clone_url="$DOTFILES_SSH_GIT_URL"
+		fi
+
+		gum spin -s line --title="Cloning the git repository into \"$HOME/.dotfiles\"..." -- \
+			git clone --quiet "$clone_url" "$DOTFILES_DIR" 2>&1 >/dev/null
+	else
+		gum spin -s line --title="Updating the git repository..." -- \
+			git -C "$DOTFILES_DIR" pull "$DOTFILES_DEFAULT_REMOTE" "$DOTFILES_DEFAULT_BRANCH" --quiet >/dev/null
+	fi
+}
+
 cleanup__update() {
 	echo "Clean up update"
 
@@ -201,6 +218,7 @@ dot__hts() {
 }
 
 dot__init() {
+	dot__pull
 	dot__ans__init
 	dot__hts
 	dot__stow
@@ -279,20 +297,6 @@ dot__ans__update() {
 
 	ansible-playbook --skip-tags initial "$ANSIBLE_ENTRY"
 }
-
-if [[ ! -d "$DOTFILES_DIR" ]]; then
-	clone_url="$DOTFILES_HTTP_GIT_URL"
-	# TODO: Better ssh validation?
-	if [[ -d "$SSH_DIR" ]]; then
-		clone_url="$DOTFILES_SSH_GIT_URL"
-	fi
-
-	gum spin -s line --title="Cloning the git repository into \"$HOME/.dotfiles\"..." -- \
-		git clone --quiet "$clone_url" "$DOTFILES_DIR" 2>&1 >/dev/null
-else
-	gum spin -s line --title="Updating the git repository..." -- \
-		git -C "$DOTFILES_DIR" pull "$DOTFILES_DEFAULT_REMOTE" "$DOTFILES_DEFAULT_BRANCH" --quiet >/dev/null
-fi
 
 if [[ $# -gt 0 ]]; then
 	sub_cmd="$1"
