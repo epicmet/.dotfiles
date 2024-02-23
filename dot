@@ -126,7 +126,8 @@ SUB COMMANDS:
   <NO-SUB-COMMAND>      No sub-command is equivalent \"dot stow\" && \"dot ans update\"
   init                  This is equivalent \"dot ans init\" && \"dot hts\" && \"dot stow\"
   pull                  Either clone dotfiles or pull latest commits from the master branch
-  update                Update the latest \"dot\" script from the repo
+  sync                  Sync the current local \"dot\" script to the install path (/usr/local/bin)
+  stable                Get & install the \"dot\" script in the latest commit from repo
   stow                  Update the config files using stow
   ans init              Runs the \"initial\" tag of ansible playbook
   ans update            Run all ansible playbooks but \"initial\"
@@ -194,7 +195,7 @@ cleanup__update() {
 	fi
 }
 
-dot__update() {
+dot__stable() {
 	cleanup_funcs+=("cleanup__update")
 
 	echo -e "${SEA}Getting latest \"dot\" script..."${NC}
@@ -203,6 +204,13 @@ dot__update() {
 
 	sudo mv $TEMP_EXECUTABLE /usr/local/bin/dot &&
 		chmod +x /usr/local/bin/dot
+}
+
+dot__sync() {
+	sudo cp "$DOTFILES_DIR/dot" /usr/local/bin/dot &&
+		chmod +x /usr/local/bin/dot
+
+	echo -e "${SEA}Local \"dot\" script synced with /usr/local/bin/dot."${NC}
 
 	exit $EC_SUCCEESS
 }
