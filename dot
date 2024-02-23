@@ -4,8 +4,8 @@
 DOTFILES_DIR="$HOME/.dotfiles"
 DOTFILES_DEFAULT_BRANCH="master"
 DOTFILES_DEFAULT_REMOTE="origin"
-DOTFILES_SSH_GIT_URL="git@github.com:MahdiAghaei1/.dotfiles.git"
-DOTFILES_HTTP_GIT_URL="https://github.com/MahdiAghaei1/.dotfiles.git"
+DOTFILES_SSH_GIT_URL="git@github.com:epicmet/.dotfiles.git"
+DOTFILES_HTTP_GIT_URL="https://github.com/epicmet/.dotfiles.git"
 TEMP_EXECUTABLE="temp_dot_executable"
 SSH_DIR="$HOME/.ssh"
 ANSIBLE_ENTRY="$DOTFILES_DIR/ansible/local.yml"
@@ -182,7 +182,7 @@ dot__update() {
 
 	echo -e "${SEA}Getting latest \"dot\" script..."${NC}
 
-	curl -fsSL https://raw.githubusercontent.com/MahdiAghaei1/.dotfiles/master/dot >"$TEMP_EXECUTABLE"
+	curl -fsSL https://raw.githubusercontent.com/epicmet/.dotfiles/master/dot >"$TEMP_EXECUTABLE"
 
 	sudo mv $TEMP_EXECUTABLE /usr/local/bin/dot &&
 		chmod +x /usr/local/bin/dot
