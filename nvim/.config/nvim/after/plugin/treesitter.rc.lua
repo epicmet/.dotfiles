@@ -28,6 +28,7 @@ ts.setup({
     'prisma',
     'svelte',
     'php',
+    'python',
   },
   autotag = {
     enable = true,

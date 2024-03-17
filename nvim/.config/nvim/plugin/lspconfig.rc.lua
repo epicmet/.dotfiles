@@ -160,6 +160,12 @@ nvim_lsp.prismals.setup({
   capabilities = capabilities,
 })
 
+nvim_lsp.pyright.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { 'python' },
+})
+
 -- nvim_lsp.rust_analyzer.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities
