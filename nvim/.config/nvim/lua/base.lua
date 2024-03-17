@@ -68,3 +68,7 @@ vim.api.nvim_create_autocmd('InsertLeave', {
 
 -- Add asterisks in block comments
 vim.opt.formatoptions:append({ 'r' })
+-- Colorscheme
+-- vim.cmd('colorscheme base16-tomorrow-night')
+vim.cmd('colorscheme base16-ashes')
+

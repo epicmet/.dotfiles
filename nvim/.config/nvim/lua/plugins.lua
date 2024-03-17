@@ -96,6 +96,8 @@ packer.startup(function(use)
 
   use('AlexvZyl/nordic.nvim')
 
+  use('tinted-theming/base16-vim')
+
   if packer_bootstrap then require('packer').sync() end
 end)
 
