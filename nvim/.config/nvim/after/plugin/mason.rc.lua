@@ -19,6 +19,8 @@ mason_null_ls.setup({
     'jdtls',
     'clang-format',
     'phpactor',
+    'mypy',
+    'ruff',
     -- 'shellcheck',
     -- "eslint_d"
   },
@@ -35,5 +37,6 @@ lspconfig.setup({
     'prismals',
     'gopls',
     'clangd',
+    'pyright',
   },
 })
