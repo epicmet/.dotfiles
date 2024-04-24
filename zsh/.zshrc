@@ -127,6 +127,11 @@ else
   echo "Could not load fzf key-bindings and completion"
 fi
 
+if [[ -d ~/.asciis ]]; then
+  rand_ascii_art=$(ls ~/.asciis | shuf -n 1)
+  /usr/bin/cat ~/.asciis/$rand_ascii_art
+fi
+
 if command -v cfonts &> /dev/null; then
   cfonts "here we go again" -f chrome -a center
 fi
