@@ -85,6 +85,7 @@ alias bwu='bw unlock --raw | xargs -I % sed -i "s|\(BW_SESSION=\)\(.*\)|\1%|g" ~
 alias bws='bw-fzf rbw'
 alias rm='echo -e "\n\033[1;31mUse trash-cli instead\033[0m\n\n"; trash --help'
 alias openp='(){open 0.0.0.0:$1}'
+alias yw='yarn workspace'
 
 if command bat --version &> /dev/null; then
   alias cat='bat'
