@@ -5,6 +5,7 @@ require('maps')
 require('plugins')
 
 require('autorun')
+require('tsc_error')
 
 -- I don't have any os specefic stuff at the moment
 
