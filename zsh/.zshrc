@@ -86,6 +86,7 @@ alias bws='bw-fzf rbw'
 alias rm='echo -e "\n\033[1;31mUse trash-cli instead\033[0m\n\n"; trash --help'
 alias openp='(){open 0.0.0.0:$1}'
 alias yw='yarn workspace'
+alias tp='trash-put'
 
 if command bat --version &> /dev/null; then
   alias cat='bat'
