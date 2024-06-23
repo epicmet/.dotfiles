@@ -27,6 +27,7 @@ export PATH="$HOME/.deno/bin:$PATH" # Deno
 export PATH="$HOME/Software/git-fuzzy/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH" # Go binaries
 export PATH="$HOME/.basher/bin:$PATH"   ##basher5ea843
+export PATH="$HOME/.local/bin/scripts:$PATH"
 
 if command -v basher 2>&1 >/dev/null; then
   eval "$(basher init - zsh)"             ##basher5ea843
