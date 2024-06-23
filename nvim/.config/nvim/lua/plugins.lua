@@ -92,7 +92,7 @@ packer.startup(function(use)
 
   use('nanotee/zoxide.vim')
 
-  use('Exafunction/codeium.vim')
+  -- use('Exafunction/codeium.vim')
 
   use('AlexvZyl/nordic.nvim')
 
