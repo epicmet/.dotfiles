@@ -12,7 +12,7 @@ tm_realpath() {
 if [[ $# -ne 0 ]]; then
 	selected=$(tm_realpath "$1")
 else
-	selected=$(tm_realpath "$(find ~ ~/Projects ~/Projects/Learning ~/Projects/Learning/* ~/Work ~/Playgrounds ~/tmp ~/Software ~/Documents -mindepth 1 -maxdepth 1 -type d | fzf)")
+	selected=$(tm_realpath "$(find ~ ~/Projects ~/Projects/Learning ~/Projects/Learning/* ~/Work ~/Playgrounds ~/tmp ~/Software ~/Documents ~/Probe -mindepth 1 -maxdepth 1 -type d | fzf)")
 fi
 
 if [[ -z $selected ]]; then
