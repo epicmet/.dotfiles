@@ -166,6 +166,10 @@ nvim_lsp.pyright.setup({
   filetypes = { 'python' },
 })
 
+nvim_lsp.harper_ls.setup({
+  capabilities = capabilities,
+})
+
 -- nvim_lsp.rust_analyzer.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities
