@@ -30,9 +30,6 @@ ts.setup({
     'php',
     'python',
   },
-  autotag = {
-    enable = true,
-  },
   context_commentstring = {
     enable = true,
   },
