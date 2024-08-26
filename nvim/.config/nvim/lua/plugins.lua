@@ -98,6 +98,10 @@ packer.startup(function(use)
 
   use('tinted-theming/base16-vim')
 
+  use({
+    'MeanderingProgrammer/render-markdown.nvim',
+  })
+
   if packer_bootstrap then require('packer').sync() end
 end)
 
