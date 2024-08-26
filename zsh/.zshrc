@@ -114,8 +114,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # Edit the current prompt in $EDITOR
 autoload -z edit-command-line
-zle -N edit-command-line
-bindkey "^X^E" edit-command-line
+zle -N edit-command-line # Emacs style
+bindkey "^x^e" edit-command-line
+bindkey '^xe' edit-command-line
 
 ### Startup ###
 eval "$(starship init zsh)"
