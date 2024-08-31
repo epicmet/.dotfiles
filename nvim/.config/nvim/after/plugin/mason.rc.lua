@@ -38,6 +38,5 @@ lspconfig.setup({
     'gopls',
     'clangd',
     'pyright',
-    'harper_ls',
   },
 })
