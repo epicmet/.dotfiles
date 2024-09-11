@@ -41,19 +41,21 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
   -- formatting
-  -- if client.server_capabilities.documentFormattingProvider then
-  --   vim.api.nvim_create_autocmd('BufWritePre', {
-  --     group = vim.api.nvim_create_augroup('Format', { clear = true }),
-  --     buffer = bufnr,
-  --     callback = function()
-  --       if vim.lsp.buf.format then
-  --         vim.lsp.buf.format({ sync = true })
-  --       elseif vim.lsp.buf.formatting then
-  --         vim.lsp.buf.formatting()
-  --       end
-  --     end,
-  --   })
-  -- end
+  if client.server_capabilities.documentFormattingProvider then
+    vim.keymap.set('n', '<leader>f', '<cmd>lua vim.lsp.buf.format({ sync = true })<CR>')
+
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = vim.api.nvim_create_augroup('Format', { clear = true }),
+      buffer = bufnr,
+      callback = function()
+        if vim.lsp.buf.format then
+          vim.lsp.buf.format({ sync = true })
+        elseif vim.lsp.buf.formatting then
+          vim.lsp.buf.formatting()
+        end
+      end,
+    })
+  end
 end
 
 protocol.CompletionItemKind = {
