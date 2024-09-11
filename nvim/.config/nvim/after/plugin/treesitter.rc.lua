@@ -29,6 +29,9 @@ ts.setup({
     'svelte',
     'php',
     'python',
+    'gomod',
+    'gowork',
+    'gosum',
   },
   context_commentstring = {
     enable = true,
