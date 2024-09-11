@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+selected=$(gauth | awk '{print $1}' | head -n -1 | tail -n+2 | fzf)
+
+if [[ -z $selected ]]; then
+	exit 0
+fi
+
+gauth "$selected" -b
