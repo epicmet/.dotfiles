@@ -67,6 +67,9 @@ keymap.set('n', '[q', '<cmd>cprev<CR>zz')
 keymap.set('n', '<leader>qo', '<cmd>copen<CR>')
 keymap.set('n', '<leader>qq', '<cmd>cclose<CR>')
 
+-- terminal mode
+keymap.set('t', '<C-[>', '<C-\\><C-n>')
+
 local function toggle_manual_format_keymap()
   local temp = vim.g.auto_prettier_format_onsave
   vim.g.auto_prettier_format_onsave = not temp
