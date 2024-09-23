@@ -119,7 +119,7 @@ DESCRIPTION:
 FLAGS:
   --help, -h            Print this help message and exit
   --no-color, -n        Run script without colors or emojis
-  --trust, -t           Trust the operating system detection
+  --no-trust            Choose the operating system detection manually
   --verbose             Show more stuff in case of an error (set -x)
 
 SUB COMMANDS:
@@ -141,7 +141,7 @@ EOF
 }
 
 NO_COLOR=1
-TRUST_OP_DETECTION=1
+TRUST_OP_DETECTION=0
 
 setup_colors
 
@@ -157,8 +157,8 @@ while [[ $# -ge 1 && "$1" =~ ^- && ! "$1" == "--" ]]; do
 		setup_colors
 		shift
 		;;
-	-t | --trust)
-		TRUST_OP_DETECTION=0
+	--no-trust)
+		TRUST_OP_DETECTION=1
 		shift
 		;;
 	-h | --help)
