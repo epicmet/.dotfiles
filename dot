@@ -238,7 +238,7 @@ dot__stow() {
 	declare -A config_dirs
 	config_dirs=(
 		[macos]="$base_stow,yabai"
-		[arch]="$base_stow,libinput-gestures"
+		[arch]="$base_stow,libinput-gestures,betterlockscreen,i3,i3status"
 		[ubuntu]="$base_stow"
 	)
 
