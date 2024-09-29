@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+###############################################################################
+# fzf.nb-plugin
+#
+# FZF Plugin for nb
+#
+###############################################################################
+
+# Add the new subcommand name with `_subcommands add <name>`.
+_subcommands add "fzf"
+
+# Define help and usage text with `_subcommands describe <subcommand> <usage>`.
+_subcommands describe "fzf" <<HEREDOC
+Usage:
+  nb fzf
+  Description:
+    Search through current notebook using fzf and then edit sepected item.
+HEREDOC
+
+_fzf() {
+	# local note=$(_ls -t note --filename -a --no-footer --no-header --no-id --no-indicator --paths --tree | fzf-tmux -d 75% --header "$(_notebook current --name)" --preview "nb show -p {} | ${NB_MARKDOWN_TOOL:-cat} -")
+	local note=$(_ls -t note --filename -a --no-footer --no-header --no-indicator --tree | fzf --ansi --header "$(_notebook current --name)" --preview "echo {} | sed '"'s/\x1b\[[0-9;]*m//g'"' | awk -F'[][]' '"'{print $2}'"' | xargs -n 1 nb show -p | ${NB_MARKDOWN_TOOL:-bat} -" | awk -F'[][]' '{print $2}')
+
+	if ! [[ -z "$note" ]]; then
+		command nb edit "$note"
+	fi
+}
