@@ -21,6 +21,7 @@ telescope.setup({
     },
     vimgrep_arguments = {
       'rg',
+      '--no-require-git',
       '--color=never',
       '--no-heading',
       '--with-filename',
@@ -31,6 +32,11 @@ telescope.setup({
     },
     file_ignore_patterns = {
       '^.git/',
+    },
+  },
+  pickers = {
+    find_files = {
+      find_command = { 'fd', '--type', 'f', '--color', 'never', '--no-require-git' },
     },
   },
   extensions = {
