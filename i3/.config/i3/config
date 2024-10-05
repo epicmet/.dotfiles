@@ -40,6 +40,7 @@ exec --no-startup-id feh --bg-scale --zoom fill ~/Pictures/dad-reading-meme.jpeg
 exec --no-startup-id greenclip daemon
 
 # Keyboard layout
+exec_always --no-startup-id "setxkbmap -layout us,ir"
 exec_always --no-startup-id "setxkbmap -layout us,ir -option 'grp:caps_toggle'"
 
 # Use pactl to adjust volume in PulseAudio.
