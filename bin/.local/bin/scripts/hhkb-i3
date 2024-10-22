@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+set -xe
+
+setxkbmap -layout us,ir -option 'grp:caps_toggle'
