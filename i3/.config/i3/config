@@ -79,6 +79,7 @@ focus_follows_mouse no
 workspace_layout tabbed
 
 for_window [class="(?i)telegram"] floating enable
+for_window [class="(?i)kcalc"]    floating enable
 
 # change focus
 bindsym $mod+h focus left
