@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+all_workspaces=$(i3-msg -t get_workspaces | jq '.[].name' | cut -d '"' -f 2)
+target_workspace=${1:-$(echo "$all_workspaces" | dmenu)}
+workspaces_to_move=$(echo "$all_workspaces" | cut -d "$target_workspace" -f 2)
+
+for w in $workspaces_to_move; do
+	i3-msg -q [workspace=$w] move workspace $target_workspace
+done
