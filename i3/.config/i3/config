@@ -41,7 +41,7 @@ exec --no-startup-id greenclip daemon
 
 # Keyboard layout
 exec_always --no-startup-id "setxkbmap -layout us,ir -option 'grp:caps_toggle'"
-bindsym $mod+F1 exec "~/bin/hhkb-i3"
+bindsym $mod+F1 exec "~/.local/bin/scripts/hhkb-i3"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
