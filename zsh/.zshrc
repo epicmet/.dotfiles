@@ -36,6 +36,7 @@ fi
 isMac
 if [[ $? -eq 0 ]]; then
   export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+  export HOMEBREW_NO_AUTO_UPDATE=1
 fi
 
 
