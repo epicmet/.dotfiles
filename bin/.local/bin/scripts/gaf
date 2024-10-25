@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-selected=${1-$(gauth | awk '{print $1}' | head -n -1 | tail -n+2 | fzf)}
+# https://stackoverflow.com/questions/15856733/what-is-the-easiest-way-to-remove-1st-and-last-line-from-file-with-awk
+selected=${1-$(gauth | awk 'NR>2 {print last} {last=$1}' | fzf)}
 
 if [[ -z $selected ]]; then
 	exit 0
