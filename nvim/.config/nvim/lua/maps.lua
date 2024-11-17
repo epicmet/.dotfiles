@@ -58,8 +58,8 @@ keymap.set('v', '<leader>d', '"_d')
 keymap.set('n', '<leader>rp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Beginning and end of the line
-keymap.set('n', 'H', '^')
-keymap.set('n', 'L', '$')
+keymap.set({ 'n', 'v' }, 'H', '^')
+keymap.set({ 'n', 'v' }, 'L', '$')
 
 -- Quickfix list
 keymap.set('n', ']q', '<cmd>cnext<CR>zz')
