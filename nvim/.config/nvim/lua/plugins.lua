@@ -104,6 +104,8 @@ packer.startup(function(use)
 
   use({ 'jinh0/eyeliner.nvim' })
 
+  use({ 'f-person/git-blame.nvim' })
+
   if packer_bootstrap then require('packer').sync() end
 end)
 
