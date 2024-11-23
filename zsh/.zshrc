@@ -88,6 +88,7 @@ alias bws='bw-fzf rbw'
 alias openp='(){open 0.0.0.0:$1}'
 alias yw='yarn workspace'
 alias tp='trash-put'
+alias ..='cd ..'
 
 if command bat --version &> /dev/null; then
   alias cat='bat'
