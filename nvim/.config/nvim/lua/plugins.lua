@@ -106,6 +106,8 @@ packer.startup(function(use)
 
   use({ 'f-person/git-blame.nvim' })
 
+  use({ 'hrsh7th/cmp-cmdline' })
+
   if packer_bootstrap then require('packer').sync() end
 end)
 
