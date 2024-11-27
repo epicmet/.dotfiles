@@ -8,7 +8,7 @@ vim.wo.number = true
 vim.wo.rnu = true
 
 vim.opt.title = true
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 vim.opt.backup = false
 vim.opt.showcmd = true
 vim.opt.cmdheight = 1
@@ -24,6 +24,7 @@ vim.opt.backupskip = { '/tmp/*', '/private/tmp/*' }
 vim.opt.inccommand = 'split'
 
 vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
+vim.opt.infercase = true -- Case insensitive autocomplete
 vim.opt.smartcase = true
 
 vim.opt.smarttab = true
@@ -71,4 +72,3 @@ vim.opt.formatoptions:append({ 'r' })
 -- Colorscheme
 -- vim.cmd('colorscheme base16-tomorrow-night')
 vim.cmd('colorscheme base16-ashes')
-
