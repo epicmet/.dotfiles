@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+function main() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp" ~
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		tmux-sessionizer "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+main "$@"
