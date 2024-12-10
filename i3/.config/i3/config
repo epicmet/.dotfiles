@@ -73,7 +73,7 @@ bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 
 bindsym $mod+c exec "rofi -modi \\"clipboard:greenclip print\\" -show clipboard -run-command '{cmd}'"
 
-bindsym Mod4+L exec betterlockscreen -l dimblur
+bindsym Mod4+L exec betterlockscreen -l dimblur --show-layout
 
 focus_follows_mouse no
 workspace_layout tabbed
