@@ -102,8 +102,7 @@ install_deps_arch() {
 
 install_deps_mac() {
   # TODO: Figure something out for MacOS
-  echo "MacOS DEPS NOT IMPLEMENTED!"
-  exit 1
+  echo "MacOS Auto install deps NOT IMPLEMENTED! You are on your own..."
 }
 
 install_deps() {
