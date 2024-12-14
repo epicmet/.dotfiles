@@ -140,8 +140,8 @@ main() {
   clone_repo
 
   pushd "$HOME/.dotfiles"
-  dot sync
-  dot init
+  ./dot sync
+  ./dot init
   popd
 }
 
