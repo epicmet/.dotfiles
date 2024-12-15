@@ -151,7 +151,7 @@ if [[ -f "$HOME/.private_env" ]]; then
 fi
 
 # Cargo env
-. "$HOME/.cargo/env"
+[ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # Yazi
 function y() {
