@@ -130,13 +130,7 @@ eval "$(zoxide init zsh)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # fzf key-bindings
-if [[ -f ~/.fzf.zsh ]]; then
-  source ~/.fzf.zsh
-elif [[ -f /usr/share/fzf/key-bindings.zsh ]]; then
-  source /usr/share/fzf/key-bindings.zsh
-else
-  echo "Could not load fzf key-bindings and completion"
-fi
+FZF_ALT_C_COMMAND="" source <(fzf --zsh)
 
 if [[ -d ~/.asciis ]]; then
   rand_ascii_art=$(ls ~/.asciis | shuf -n 1)
