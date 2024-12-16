@@ -1,4 +1,2 @@
-local keymap = vim.keymap
-
-keymap.set({ 'n', 'v' }, 'j', 'gj')
-keymap.set({ 'n', 'v' }, 'k', 'gk')
+vim.keymap.set({ 'n', 'v' }, 'j', 'gj')
+vim.keymap.set({ 'n', 'v' }, 'k', 'gk')
