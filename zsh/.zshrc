@@ -51,6 +51,8 @@ fi
 export LANG=en_US.UTF-8 # manually set language environment
 export NVM_DIR="$HOME/.nvm" # nvm
 export EDITOR=nvim
+export TERMINAL=wezterm
+export MANPAGER='nvim +Man!'
 
 ### Main setting ###
 export HISTTIMEFORMAT="[%F %T] " # timestamp format
