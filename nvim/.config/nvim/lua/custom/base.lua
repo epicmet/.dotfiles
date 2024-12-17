@@ -58,3 +58,13 @@ vim.keymap.set('x', '<leader>p', '"_dP')
 -- Delete to void register
 vim.keymap.set('n', '<leader>d', '"_d')
 vim.keymap.set('v', '<leader>d', '"_d')
+
+-- Split tab window
+vim.keymap.set('n', 'ss', ':split<Return><C-w>w', { silent = true })
+vim.keymap.set('n', 'sv', ':vsplit<Return><C-w>w', { silent = true })
+
+-- Quickfix list
+vim.keymap.set('n', ']q', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '[q', '<cmd>cprev<CR>zz')
+vim.keymap.set('n', '<leader>qo', '<cmd>copen<CR>')
+vim.keymap.set('n', '<leader>qq', '<cmd>cclose<CR>')

@@ -18,7 +18,6 @@ return {
         'css',
         'scss',
         'html',
-        'lua',
         'prisma',
         'svelte',
         'php',

@@ -7,14 +7,37 @@ return {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make'
       },
+      {
+        "nvim-telescope/telescope-file-browser.nvim",
+      }
     },
     config = function()
       local tl = require("telescope")
       local builtin = require("telescope.builtin")
+      local actions = require('telescope.actions')
+      local fb_actions = require('telescope').extensions.file_browser.actions
 
       tl.setup({
-        file_ignore_patterns = {
-          '^.git/',
+        defaults = {
+          mappings = {
+            n = {
+              ['q'] = actions.close,
+            },
+          },
+          vimgrep_arguments = {
+            'rg',
+            '--no-require-git',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--hidden',
+            '--smart-case',
+          },
+          file_ignore_patterns = {
+            '^.git/',
+          },
         },
         pickers = {
           find_files = {
@@ -22,11 +45,44 @@ return {
           },
         },
         extensions = {
-          fzf = {}
+          fzf = {},
+          file_browser = {
+            initial_mode = 'normal',
+            theme = 'dropdown',
+            grouped = true,
+            hidden = true,
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true,
+            mappings = {
+              ['n'] = {
+                -- your custom normal mode mappings
+                ['h'] = fb_actions.goto_parent_dir,
+                ['l'] = actions.select_default,
+                ['/'] = function()
+                  vim.cmd('startinsert')
+                end,
+              },
+            },
+          }
         }
       })
 
       tl.load_extension("fzf")
+      tl.load_extension("file_browser")
+
+      -- File browser remaps
+      vim.keymap.set('n', '<C-p>', function()
+        tl.extensions.file_browser.file_browser({
+          path = '%:p:h',
+          cwd = vim.fn.expand('%:p:h'),
+          respect_gitignore = false,
+          hidden = true,
+          grouped = true,
+          previewer = false,
+          initial_mode = 'normal',
+          layout_config = { height = 40 },
+        })
+      end)
 
       -- Remove default behavior of s (who uses s?)
       vim.keymap.set({ 'n', 'v' }, 's', '<Nop>', { silent = true })
