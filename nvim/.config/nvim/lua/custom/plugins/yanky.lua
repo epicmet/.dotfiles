@@ -1,7 +1,7 @@
 return {
-  "gbprod/yanky.nvim",
+  'gbprod/yanky.nvim',
   config = function()
-    require("yanky").setup({
+    require('yanky').setup({
       highlight = {
         on_put = true,
         on_yank = true,
@@ -15,12 +15,12 @@ return {
       },
     })
 
-    vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)") -- To preserve cursor after yank
+    vim.keymap.set({ 'n', 'x' }, 'y', '<Plug>(YankyYank)') -- To preserve cursor after yank
 
     vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)')
     vim.keymap.set({ 'n', 'x' }, 'P', '<Plug>(YankyPutBefore)')
 
     vim.keymap.set('n', '<leader>n', '<Plug>(YankyCycleForward)')
     vim.keymap.set('n', '<leader>N', '<Plug>(YankyCycleBackward)')
-  end
+  end,
 }

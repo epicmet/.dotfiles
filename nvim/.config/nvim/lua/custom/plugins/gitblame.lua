@@ -1,6 +1,6 @@
 -- This plugin is much faster than Gitsigns toggle blame
 return {
-  "f-person/git-blame.nvim",
+  'f-person/git-blame.nvim',
   opts = {
     enabled = false, -- Disable by default, Enable with :GitBlameToggle
     message_template = ' <summary> • <date> • <author> • <<sha>>', -- template for the blame message, check the Message template section for more options

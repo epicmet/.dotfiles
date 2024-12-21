@@ -12,8 +12,8 @@ vim.opt.undofile = true
 
 vim.opt.clipboard = 'unnamedplus' -- Sync yank registry with clipboard
 
-vim.opt.ignorecase = true         -- Case insensitive searching UNLESS /C or capital in search
-vim.opt.infercase = true          -- Case insensitive autocomplete
+vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
+vim.opt.infercase = true -- Case insensitive autocomplete
 vim.opt.smartcase = true
 
 vim.opt.shiftwidth = 2
@@ -25,11 +25,11 @@ vim.opt.shell = 'zsh'
 
 -- Remove default behavior of space
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.g.mapleader = " "
+vim.g.mapleader = ' '
 -- vim.g.maplocalleader = "\\"
 
-vim.keymap.set("n", "<leader>x", "<cmd>source %<CR>")
-vim.keymap.set("v", "<leader>x", ":.lua<CR>")
+vim.keymap.set('n', '<leader>x', '<cmd>source %<CR>')
+vim.keymap.set('v', '<leader>x', ':.lua<CR>')
 
 vim.g.auto_format = true
 local function toggle_auto_format_handler()

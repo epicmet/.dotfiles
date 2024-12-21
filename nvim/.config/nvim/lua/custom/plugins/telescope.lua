@@ -1,19 +1,19 @@
 return {
   {
-    "nvim-telescope/telescope.nvim",
+    'nvim-telescope/telescope.nvim',
     dependencies = {
-      { "nvim-lua/plenary.nvim" },
+      { 'nvim-lua/plenary.nvim' },
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make'
+        build = 'make',
       },
       {
-        "nvim-telescope/telescope-file-browser.nvim",
-      }
+        'nvim-telescope/telescope-file-browser.nvim',
+      },
     },
     config = function()
-      local tl = require("telescope")
-      local builtin = require("telescope.builtin")
+      local tl = require('telescope')
+      local builtin = require('telescope.builtin')
       local actions = require('telescope.actions')
       local fb_actions = require('telescope').extensions.file_browser.actions
 
@@ -41,7 +41,7 @@ return {
         },
         pickers = {
           find_files = {
-            theme = "ivy"
+            theme = 'ivy',
           },
         },
         extensions = {
@@ -63,12 +63,12 @@ return {
                 end,
               },
             },
-          }
-        }
+          },
+        },
       })
 
-      tl.load_extension("fzf")
-      tl.load_extension("file_browser")
+      tl.load_extension('fzf')
+      tl.load_extension('file_browser')
 
       -- File browser remaps
       vim.keymap.set('n', '<C-p>', function()
@@ -117,6 +117,6 @@ return {
       vim.keymap.set('n', '\\\\', function()
         builtin.resume()
       end)
-    end
-  }
+    end,
+  },
 }

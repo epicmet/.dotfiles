@@ -1,4 +1,4 @@
 return {
   'numToStr/Comment.nvim',
-  opts = {}
+  opts = {},
 }

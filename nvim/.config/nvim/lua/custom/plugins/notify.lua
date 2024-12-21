@@ -18,5 +18,5 @@ return {
       end
       return require('notify')(msg, ...)
     end
-  end
+  end,
 }

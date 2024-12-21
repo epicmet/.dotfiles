@@ -1,5 +1,5 @@
 return {
-  "lewis6991/gitsigns.nvim",
+  'lewis6991/gitsigns.nvim',
   config = function()
     require('gitsigns').setup({
       on_attach = function(bufnr)
@@ -27,7 +27,7 @@ return {
             gitsigns.nav_hunk('prev')
           end
         end)
-      end
+      end,
     })
-  end
+  end,
 }

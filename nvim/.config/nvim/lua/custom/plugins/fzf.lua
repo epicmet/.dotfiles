@@ -1,4 +1,4 @@
 return {
-  "ibhagwan/fzf-lua",
-  opts = {}
+  'ibhagwan/fzf-lua',
+  opts = {},
 }
