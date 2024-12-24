@@ -4,9 +4,9 @@ return {
     local ss = require('smart-splits')
     ss.setup({})
 
-    vim.keymap.set('n', '<C-h>', require('smart-splits').resize_left)
-    vim.keymap.set('n', '<C-j>', require('smart-splits').resize_down)
-    vim.keymap.set('n', '<C-k>', require('smart-splits').resize_up)
-    vim.keymap.set('n', '<C-l>', require('smart-splits').resize_right)
+    vim.keymap.set('n', '<C-h>', ss.resize_left)
+    vim.keymap.set('n', '<C-j>', ss.resize_down)
+    vim.keymap.set('n', '<C-k>', ss.resize_up)
+    vim.keymap.set('n', '<C-l>', ss.resize_right)
   end,
 }
