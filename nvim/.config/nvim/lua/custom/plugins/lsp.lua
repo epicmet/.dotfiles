@@ -101,22 +101,20 @@ return {
           vim.keymap.set('n', '<leader>f', function()
             conform.format({ bufnr = 0, lsp_fallback = true, quiet = true })
           end, { buffer = 0 })
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = 0 })
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = 0 })
+
+          local tb = require('telescope.builtin')
+          vim.keymap.set('n', 'gd', tb.lsp_definitions, { buffer = 0 })
+          vim.keymap.set('n', 'gr', tb.lsp_references, { buffer = 0 })
+          vim.keymap.set('n', 'gI', tb.lsp_implementations, { buffer = 0 })
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = 0 })
-          vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, { buffer = 0 })
+          vim.keymap.set('n', 'gy', tb.lsp_type_definitions, { buffer = 0 })
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
           vim.keymap.set('n', 'S', vim.lsp.buf.signature_help, { buffer = 0 })
           vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, { buffer = 0 })
           vim.keymap.set('n', ']g', vim.diagnostic.goto_next, { buffer = 0 })
 
-          vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { buffer = 0 })
+          vim.keymap.set('n', '<space>cr', vim.lsp.buf.rename, { buffer = 0 })
           vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, { buffer = 0 })
-
-          -- vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
-          -- vim.keymap.set('n', 'gy', '<cmd>Telescope lsp_type_definitions<CR>', opts)
-          -- vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-          -- vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
 
           if client.supports_method('textDocument/formatting') then
             vim.api.nvim_create_autocmd('BufWritePre', {
