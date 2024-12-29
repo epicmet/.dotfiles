@@ -4,3 +4,7 @@ window-decoration = false
 title = "Ghostty 👻"
 cursor-style = block
 theme = Chalk
+
+## Keybinds
+# ctrl+enter will full-screen the terminal window
+keybind = ctrl+enter=unbind
