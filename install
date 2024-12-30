@@ -81,7 +81,10 @@ install_deps_arch() {
     lazygit \
     wezterm \
     eza \
-    i3-wm
+    i3-wm \
+    jnv \
+    inkscape \
+    ghostty
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/yay.git "$HOME/Software"
@@ -95,7 +98,8 @@ install_deps_arch() {
     brave-bin \
     tmux-plugin-manager \
     yq \
-    boomer
+    boomer \
+    waypaper
 
   popd
 }
