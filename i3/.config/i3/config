@@ -75,6 +75,12 @@ bindsym $mod+c exec "rofi -modi \\"clipboard:greenclip print\\" -show clipboard 
 
 bindsym Mod4+L exec betterlockscreen -l dimblur --show-layout
 
+# take a screenshot of a screen region and copy it to a clipboard
+bindsym --release $mod+Shift+p exec "~/.local/bin/scripts/scregcp -s $HOME/Pictures/Screenshots/"
+
+# take a screenshot of a whole window and copy it to a clipboard
+bindsym --release $mod+p exec "~/.local/bin/scripts/scregcp $HOME/Pictures/Screenshots/"
+
 focus_follows_mouse no
 workspace_layout tabbed
 
