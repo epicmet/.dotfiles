@@ -36,7 +36,10 @@ get_password_bw() {
 
 get_password_rbw() {
 	local password=$(
-		rbw list --fields id --fields name | fzf --cycle --inline-info --ansi --layout=reverse --prompt="-> " --with-nth=1,2 --preview="echo {} | bat" | awk '{print $1}' | xargs -I {} rbw get {}
+		rbw list --fields user --fields name \
+      | fzf --cycle --inline-info --ansi --layout=reverse --prompt="-> " --with-nth=1,2 --preview="echo {} | bat" \
+      | awk '{print $1}' \
+      | xargs -I {} rbw get {}
 	)
 
 	echo "$password"
