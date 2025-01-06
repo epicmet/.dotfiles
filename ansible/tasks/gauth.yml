@@ -1,0 +1,8 @@
+- name: Copy .gauth.csv content
+  copy:
+    src: "{{ gauth_source }}"
+    dest: "{{ gauth_dest }}"
+    mode: 0644
+  tags:
+    - initial
+    - gauth
