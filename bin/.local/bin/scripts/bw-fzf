@@ -60,7 +60,7 @@ main() {
 		if is_mac; then
 			echo -n "$password" | pbcopy
 		elif is_linux; then
-			echo -n "$password" | wl-copy
+			echo -n "$password" | xsel -ib
 		fi
 	fi
 }
