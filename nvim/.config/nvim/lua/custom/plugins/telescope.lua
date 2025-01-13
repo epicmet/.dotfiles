@@ -7,9 +7,8 @@ return {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
       },
-      {
-        'nvim-telescope/telescope-file-browser.nvim',
-      },
+      { 'nvim-telescope/telescope-file-browser.nvim' },
+      { 'moniquelive/rfc.nvim' },
     },
     config = function()
       local tl = require('telescope')
@@ -69,6 +68,7 @@ return {
 
       tl.load_extension('fzf')
       tl.load_extension('file_browser')
+      tl.load_extension('rfc')
 
       -- File browser remaps
       vim.keymap.set('n', '<C-p>', function()
