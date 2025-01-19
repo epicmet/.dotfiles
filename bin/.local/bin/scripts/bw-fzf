@@ -1,21 +1,5 @@
 #!/usr/bin/env bash
 
-is_mac() {
-	if [ "$(uname -s)" = "Darwin" ]; then
-		return 0
-	else
-		return 1
-	fi
-}
-
-is_linux() {
-	if [ "$(uname -s)" = "Linux" ]; then
-		return 0
-	else
-		return 1
-	fi
-}
-
 unlock_bw() {
 	bw unlock --raw | xargs -I % sed -i "s|\(BW_SESSION=\)\(.*\)|\1%|g" ~/.private_env
 }
@@ -57,11 +41,7 @@ main() {
 	local password=$("get_password_$agent" "$@")
 
 	if [ -n "$password" ]; then
-		if is_mac; then
-			echo -n "$password" | pbcopy
-		elif is_linux; then
-			echo -n "$password" | xsel -ib
-		fi
+		echo -n "$password" | toclip
 	fi
 }
 

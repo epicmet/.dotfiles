@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+main() {
+  local operating_system=$(uname -s | tr '[:upper:]' '[:lower:]') || "$OSTYPE"
+
+  local prog=""
+  if [[ "$operating_system" == "darwin"* ]]; then
+    prog="pbcopy"
+  elif [[ "$operating_system" == "linux"* ]]; then
+    prog="xsel -ib"
+  else
+    echo "Could not recognize operating system for choosing clipboard! got: \"${operating_system}\" as operating system."
+    exit 1
+  fi
+
+  if [ -t 0 ]; then
+    echo "$@" | $prog
+  else
+    $prog < /dev/stdin
+  fi
+
+}
+
+main "$@"

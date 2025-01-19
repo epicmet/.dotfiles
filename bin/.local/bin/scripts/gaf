@@ -7,4 +7,4 @@ if [[ -z $selected ]]; then
 	exit 0
 fi
 
-gauth "$selected" -b
+gauth "$selected" -b | toclip
