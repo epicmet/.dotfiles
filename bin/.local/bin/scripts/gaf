@@ -1,10 +1,54 @@
 #!/usr/bin/env bash
 
-# https://stackoverflow.com/questions/15856733/what-is-the-easiest-way-to-remove-1st-and-last-line-from-file-with-awk
-selected=${1-$(gauth | awk 'NR>2 {print last} {last=$1}' | fzf)}
+show_help() {
+  echo "Usage: gaf [-h|-p] [ENTRY]"
+  echo
+  echo "  -p   Only print the password, don't copy it"
+  echo "  -h   Show this help message"
+}
 
-if [[ -z $selected ]]; then
-	exit 0
-fi
+main() {
+  local print_only=0
 
-gauth "$selected" -b | toclip
+  while [[ $# -ge 1 && "$1" =~ ^- && ! "$1" == "--" ]]; do
+	  case "$1" in
+	  -v | --verbose)
+      set -x
+      shift
+      ;;
+	  -h | --help)
+      show_help
+      exit 0
+      ;;
+    -p)
+      print_only=1
+      shift
+      ;;
+
+	  *)
+      echo "Unknown flag \"$1\""
+      show_help
+      exit 1
+      ;;
+	  esac
+  done
+
+  # https://stackoverflow.com/questions/15856733/what-is-the-easiest-way-to-remove-1st-and-last-line-from-file-with-awk
+  local selected=${1-$(gauth | awk 'NR>2 {print last} {last=$1}' | fzf)}
+
+  if [[ -z $selected ]]; then
+    echo "Could find anything matching input!"
+    exit 1
+  fi
+
+  local otp=$(gauth "$selected" -b)
+
+
+  if [[ $print_only -eq 1 ]]; then
+    printf "$otp"
+  else
+    echo "$otp" | toclip
+  fi
+}
+
+main "$@"
