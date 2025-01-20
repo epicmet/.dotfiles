@@ -31,6 +31,7 @@ return {
         lua_ls = true,
         dockerls = true,
         bashls = true,
+        gopls = true,
         ts_ls = {
           -- root_dir = lspc.util.root_pattern('package.json'),
           single_file_support = true,
