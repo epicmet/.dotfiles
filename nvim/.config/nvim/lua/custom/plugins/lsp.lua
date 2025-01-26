@@ -36,6 +36,8 @@ return {
           -- root_dir = lspc.util.root_pattern('package.json'),
           single_file_support = true,
         },
+        ruff = true,
+        pylsp = true,
         jsonls = {
           settings = {
             json = {
