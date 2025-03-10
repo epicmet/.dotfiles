@@ -84,7 +84,8 @@ install_deps_arch() {
     i3-wm \
     jnv \
     inkscape \
-    ghostty
+    ghostty \
+    gnome-keyring
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/yay.git "$HOME/Software"
