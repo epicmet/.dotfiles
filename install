@@ -82,7 +82,6 @@ install_deps_arch() {
     wezterm \
     eza \
     i3-wm \
-    jnv \
     inkscape \
     ghostty \
     gnome-keyring
