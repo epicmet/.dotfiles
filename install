@@ -96,12 +96,13 @@ install_deps_arch() {
     lazydocker \
     nvm \
     brave-bin \
-    tmux-plugin-manager \
     yq \
     boomer \
     waypaper
 
   popd
+
+  git clone https://github.com/tmux-plugins/tmp ~/.tmux/plugins/tpm
 }
 
 install_deps_mac() {
