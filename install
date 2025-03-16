@@ -86,7 +86,8 @@ install_deps_arch() {
     ghostty \
     gnome-keyring \
     rofi \
-    sshuttle
+    sshuttle \
+    go
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/paru.git "$HOME/Software/paru" --depth=1
