@@ -85,7 +85,8 @@ install_deps_arch() {
     inkscape \
     ghostty \
     gnome-keyring \
-    rofi
+    rofi \
+    sshuttle
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/paru.git "$HOME/Software/paru" --depth=1
