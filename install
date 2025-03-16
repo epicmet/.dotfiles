@@ -93,7 +93,7 @@ install_deps_arch() {
   makepkg -si
 
   echo "Installing AURs ..."
-  yay -S \
+  paru -S \
     lazydocker \
     nvm \
     brave-bin \
