@@ -49,7 +49,7 @@ install_deps_arch() {
     exit 1
   fi
 
-  sudo pacman -Sy
+  sudo pacman -Syu
 
   sudo pacman -S \
     git \
