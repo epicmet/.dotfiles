@@ -87,8 +87,8 @@ install_deps_arch() {
     gnome-keyring
 
   mkdir -p "$HOME/Software"
-  git clone https://aur.archlinux.org/paru.git "$HOME/Software" --depth=1
-  cd "$HOME/Software/paru"
+  git clone https://aur.archlinux.org/paru.git "$HOME/Software/paru" --depth=1
+  pushd "$HOME/Software/paru"
   makepkg -si
 
   echo "Installing AURs ..."
