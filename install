@@ -95,7 +95,6 @@ install_deps_arch() {
   echo "Installing AURs ..."
   paru -S \
     lazydocker \
-    nvm \
     brave-bin \
     yq \
     boomer \
@@ -104,7 +103,11 @@ install_deps_arch() {
 
   popd
 
+  # TPM
   git clone https://github.com/tmux-plugins/tmp ~/.tmux/plugins/tpm
+
+  # NVM
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 }
 
 install_deps_mac() {
