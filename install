@@ -84,7 +84,8 @@ install_deps_arch() {
     i3-wm \
     inkscape \
     ghostty \
-    gnome-keyring
+    gnome-keyring \
+    rofi
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/paru.git "$HOME/Software/paru" --depth=1
@@ -98,7 +99,8 @@ install_deps_arch() {
     brave-bin \
     yq \
     boomer \
-    waypaper
+    waypaper \
+    rofi-greenclip
 
   popd
 
