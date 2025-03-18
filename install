@@ -87,7 +87,8 @@ install_deps_arch() {
     gnome-keyring \
     rofi \
     sshuttle \
-    go
+    go \
+    xsel
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/paru.git "$HOME/Software/paru" --depth=1
@@ -110,6 +111,9 @@ install_deps_arch() {
 
   # NVM
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+
+  # Gauth
+  go install github.com/pcarrier/gauth@latest
 }
 
 install_deps_mac() {
