@@ -91,6 +91,7 @@ install_deps_arch() {
     xsel \
     less \
     man-db \
+    arandr \
     yazi
 
   mkdir -p "$HOME/Software"
