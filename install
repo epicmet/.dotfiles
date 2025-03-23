@@ -74,7 +74,7 @@ install_deps_arch() {
     dua-cli \
     bpytop \
     ttf-dejavu \
-    ttf-cascadia-mono-nerd \
+    ttf-cascadia-code-nerd \
     rbw \
     docker \
     ansible-core \
