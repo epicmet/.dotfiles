@@ -28,7 +28,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l dimbl
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# Right now it is in `dex` auto start list
+# exec --no-startup-id nm-applet
 
 # Random wallpaper using feh
 exec --no-startup-id feh --randomize --bg-scale --zoom fill ~/.dotfiles/Wallpapers/*
