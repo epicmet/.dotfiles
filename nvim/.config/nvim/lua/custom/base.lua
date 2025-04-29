@@ -31,7 +31,7 @@ vim.g.mapleader = ' '
 vim.keymap.set('n', '<leader>x', '<cmd>source %<CR>')
 vim.keymap.set('v', '<leader>x', ':.lua<CR>')
 
-vim.g.auto_format = true
+vim.g.auto_format = false
 local function toggle_auto_format_handler()
   vim.g.auto_format = not vim.g.auto_format
   print('Auto format on save ' .. (tostring(vim.g.auto_format)))
