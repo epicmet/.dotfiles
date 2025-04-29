@@ -102,9 +102,7 @@ return {
         })
       end, { desc = '[S]earch current [W]ord' })
 
-      vim.keymap.set('n', 'sg', function()
-        builtin.live_grep()
-      end, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', 'sg', require('custom.telescope.multi-ripgrep'), { desc = '[S]earch by [G]rep' })
 
       vim.keymap.set('n', '<leader><Space>', function()
         builtin.buffers()
