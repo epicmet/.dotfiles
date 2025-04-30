@@ -134,11 +134,6 @@ eval "$(zoxide init zsh)"
 # fzf key-bindings
 FZF_ALT_C_COMMAND="" source <(fzf --zsh)
 
-if [[ -d ~/.asciis ]]; then
-  rand_ascii_art=$(ls ~/.asciis | shuf -n 1)
-  /usr/bin/cat ~/.asciis/$rand_ascii_art
-fi
-
 if command -v cfonts &> /dev/null; then
   cfonts "here we go again" -f chrome -a center
 fi
