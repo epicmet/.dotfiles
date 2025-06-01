@@ -68,3 +68,6 @@ vim.keymap.set('n', ']q', '<cmd>cnext<CR>zz')
 vim.keymap.set('n', '[q', '<cmd>cprev<CR>zz')
 vim.keymap.set('n', '<leader>qo', '<cmd>copen<CR>')
 vim.keymap.set('n', '<leader>qq', '<cmd>cclose<CR>')
+
+-- Insert \(\) in command mode
+vim.keymap.set('c', ';\\', '\\(\\)<Left><Left>')
