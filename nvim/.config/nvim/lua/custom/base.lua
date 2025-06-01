@@ -76,3 +76,13 @@ vim.keymap.set('n', '<leader>qq', '<cmd>cclose<CR>')
 
 -- Insert \(\) in command mode
 vim.keymap.set('c', ';\\', '\\(\\)<Left><Left>')
+
+vim.api.nvim_create_user_command('CpPath', function()
+  local path = vim.fn.expand('%:p')
+
+  local current_row = vim.api.nvim_win_get_cursor(0)[1]
+  local current_col = vim.api.nvim_win_get_cursor(0)[2] + 1
+
+  vim.fn.setreg('+', path .. ":" .. current_row .. ":" .. current_col)
+  vim.notify('Copied current file path to the clipboard!')
+end, {})
