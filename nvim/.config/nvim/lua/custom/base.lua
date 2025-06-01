@@ -1,3 +1,8 @@
+P = function(v)
+  print(vim.inspect(v))
+  return v
+end
+
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
 vim.opt.autoindent = true
