@@ -36,6 +36,7 @@ exec --no-startup-id feh --randomize --bg-scale --zoom fill ~/.dotfiles/Wallpape
 
 # MongoDB Compass needs the keyring thingy to store passwords (Electron needs it)
 # https://stackoverflow.com/questions/78604024/mongodb-compass-connection-password-missing-when-using-i3-wm
+# use something like `Exec=env XDG_CURRENT_DESKTOP=XFCE mongodb-compass %U` for the app that requires the keyring stuff
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
 
 # Clipboard daemon
