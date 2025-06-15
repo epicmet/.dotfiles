@@ -53,6 +53,7 @@ export NVM_DIR="$HOME/.nvm" # nvm
 export EDITOR=nvim
 export TERMINAL=wezterm
 export MANPAGER='nvim +Man!'
+export COREPACK_ENABLE_AUTO_PIN=0 # https://github.com/nodejs/corepack/blob/main/README.md#environment-variables
 
 ### Main setting ###
 export HISTTIMEFORMAT="[%F %T] " # timestamp format
