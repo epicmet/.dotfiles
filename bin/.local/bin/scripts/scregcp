@@ -35,6 +35,7 @@ else
     params="-window root"
 fi
 
+mkdir -p "$base_folder"
 file_path=${base_folder}$( date '+%Y-%m-%d_%H-%M-%S' )_screenshot.png
 import ${params} ${file_path}
 xclip -selection clipboard -target image/png -i < ${file_path}
