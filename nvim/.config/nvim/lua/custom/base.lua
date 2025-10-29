@@ -27,6 +27,8 @@ vim.opt.expandtab = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.shell = 'zsh'
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
 
 -- Remove default behavior of space
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
