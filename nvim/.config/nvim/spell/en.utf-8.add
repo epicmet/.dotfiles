@@ -26,3 +26,7 @@ JWT
 dev
 config
 vite
+param
+HealthCheck
+DTO
+Redis
