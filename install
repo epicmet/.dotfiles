@@ -94,7 +94,8 @@ install_deps_arch() {
     arandr \
     yazi \
     network-manager-applet \
-    nm-connection-editor
+    nm-connection-editor \
+    blueman
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/paru.git "$HOME/Software/paru" --depth=1
