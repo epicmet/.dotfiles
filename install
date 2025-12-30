@@ -110,7 +110,8 @@ install_deps_arch() {
     yq \
     boomer \
     waypaper \
-    rofi-greenclip
+    rofi-greenclip \
+    betterlockscreen 
 
   popd
 
@@ -151,6 +152,10 @@ install_deps() {
   done
 }
 
+post_install() {
+  betterlockscreen -u ~/.dotfiles/Wallpapers/shocked-funny-cat-in-galaxy.png
+}
+
 main() {
   setup_colors
 
@@ -167,6 +172,8 @@ main() {
   ./dot sync
   ./dot init
   popd
+
+  post_install
 }
 
 main
