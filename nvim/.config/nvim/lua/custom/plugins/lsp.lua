@@ -20,7 +20,6 @@ return {
       'b0o/SchemaStore.nvim',
     },
     config = function()
-      local lspc = require('lspconfig')
       local mason = require('mason')
       local mti = require('mason-tool-installer')
       local conform = require('conform')
@@ -33,7 +32,6 @@ return {
         bashls = true,
         gopls = true,
         ts_ls = {
-          -- root_dir = lspc.util.root_pattern('package.json'),
           single_file_support = true,
         },
         ruff = true,
@@ -81,7 +79,8 @@ return {
         if config == true then config = {} end
         config = vim.tbl_deep_extend('force', { capabilities = capabilities }, config)
 
-        lspc[name].setup(config)
+        vim.lsp.config(name, config)
+        vim.lsp.enable(name)
       end
 
       conform.setup({
