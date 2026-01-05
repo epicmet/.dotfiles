@@ -103,6 +103,8 @@ install_deps_arch() {
     noto-fonts-emoji \
     noto-fonts-cjk \
     noto-fonts-extra
+    fuse2 \
+    fuse2fs
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/paru.git "$HOME/Software/paru" --depth=1
