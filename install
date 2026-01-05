@@ -97,7 +97,12 @@ install_deps_arch() {
     nm-connection-editor \
     blueman \
     feh \
-    lxappearance
+    lxappearance \
+    font-manager \
+    noto-fonts \
+    noto-fonts-emoji \
+    noto-fonts-cjk \
+    noto-fonts-extra
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/paru.git "$HOME/Software/paru" --depth=1
@@ -112,7 +117,8 @@ install_deps_arch() {
     boomer \
     waypaper \
     rofi-greenclip \
-    betterlockscreen 
+    betterlockscreen \
+    vazirmatn-fonts
 
   popd
 
