@@ -1,9 +1,10 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
+  branch = "master",
   config = function()
     ---@diagnostic disable-next-line: missing-fields
-    require('nvim-treesitter.config').setup({
+    require('nvim-treesitter.configs').setup({
       ensure_installed = {
         'tsx',
         'typescript',
