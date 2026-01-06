@@ -141,7 +141,7 @@ install_deps_mac() {
 
 install_deps() {
   while true; do
-    local prompt="Choose OS (1: archliux, 2: MacOS): "
+    local prompt="Choose OS (1: archlinux, 2: MacOS): "
     read -p "$prompt" choice
 
     case $choice in
