@@ -123,6 +123,10 @@ if command -v kubectl 2>&1 >/dev/null; then
   source <(kubectl completion zsh)
 fi
 
+if command -v npm 2>&1 >/dev/null; then
+  source <(npm completion)
+fi
+
 # Edit the current prompt in $EDITOR
 autoload -z edit-command-line
 zle -N edit-command-line # Emacs style
