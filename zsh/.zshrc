@@ -124,7 +124,7 @@ if command -v kubectl 2>&1 >/dev/null; then
 fi
 
 if command -v npm 2>&1 >/dev/null; then
-  source <(npm completion)
+  source <(npm completion --loglevel=error)
 fi
 
 # Edit the current prompt in $EDITOR
