@@ -89,6 +89,7 @@ return {
           lua = { 'stylua' },
           javascript = { 'prettierd', 'prettier', stop_after_first = true },
           typescript = { 'prettierd', 'prettier', stop_after_first = true },
+          markdown = { 'prettierd', 'prettier', stop_after_first = true },
         },
       })
 
