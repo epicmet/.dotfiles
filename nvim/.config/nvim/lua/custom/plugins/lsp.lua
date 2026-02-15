@@ -55,7 +55,7 @@ return {
             },
           },
         },
-        prismals = true
+        prismals = true,
       }
 
       local servers_to_install = vim.tbl_filter(function(key)
