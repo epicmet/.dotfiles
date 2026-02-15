@@ -96,6 +96,9 @@ alias tp='trash-put'
 alias ..='cd ..'
 alias rm='rm -v'
 alias mv='mv -v'
+alias npm='npm --verbose'
+alias ni='ni --verbose'
+alias nun='nun --verbose'
 
 if command bat --version &> /dev/null; then
   alias cat='bat'
