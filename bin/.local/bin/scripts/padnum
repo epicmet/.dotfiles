@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+DEFAULT_WIDTH=2
+WIDTH="$DEFAULT_WIDTH"
+DRY_RUN=0
+
+print_help() {
+  cat <<EOF
+Usage: $(basename "$0") [options]
+
+Pads leading digits of filenames in the current directory to a fixed width.
+
+Options:
+  -w, --width N     Set padding width (default: 2)
+  -n, --dry-run     Show what would be renamed without applying changes
+  -h, --help        Show this help message
+
+Examples:
+  $(basename "$0")
+  $(basename "$0") -w 3
+EOF
+}
+
+confirm() {
+  local prompt="$1"
+  read -r -p "$prompt [y/N]: " ans
+  case "$ans" in
+    y|Y|yes|YES) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -w|--width)
+      shift
+      if [[ $# -eq 0 || ! "$1" =~ ^[0-9]+$ ]]; then
+        echo "Error: --width requires a positive integer." >&2
+        exit 1
+      fi
+      WIDTH="$1"
+      ;;
+    -n|--dry-run)
+      DRY_RUN=1
+      ;;
+    -h|--help)
+      print_help
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1" >&2
+      print_help
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+declare -A RENAME_MAP=()
+
+shopt -s nullglob
+for f in *; do
+  [[ -f "$f" ]] || continue
+
+  if [[ "$f" =~ ^([0-9]+)(.*)$ ]]; then
+    num="${BASH_REMATCH[1]}"
+    rest="${BASH_REMATCH[2]}"
+
+    dec=$((10#$num))
+    required_len=${#dec}
+
+    if (( required_len > WIDTH )); then
+      echo "Error: cannot fit '$num' (file: '$f') into width $WIDTH (requires at least $required_len digits)." >&2
+      exit 1
+    fi
+
+    padded="$(printf "%0*d" "$WIDTH" "$dec")"
+    new_name="${padded}${rest}"
+
+    if [[ "$f" != "$new_name" ]]; then
+      if [[ -e "$new_name" && "$new_name" != "$f" ]]; then
+        echo "Conflict: '$new_name' already exists." >&2
+        if ! confirm "Skip renaming '$f'?"; then
+          echo "Aborted."
+          exit 1
+        fi
+        continue
+      fi
+      RENAME_MAP["$f"]="$new_name"
+    fi
+  fi
+done
+
+if [[ ${#RENAME_MAP[@]} -eq 0 ]]; then
+  echo "Nothing to rename."
+  exit 0
+fi
+
+echo "Planned renames:"
+
+declare -a SORTED_SRCS=()
+for src in "${!RENAME_MAP[@]}"; do
+  if [[ "$src" =~ ^([0-9]+) ]]; then
+    SORTED_SRCS+=("${BASH_REMATCH[1]}::$src")
+  fi
+done
+
+IFS=$'\n' SORTED_SRCS=($(sort -t: -k1,1n <<<"${SORTED_SRCS[*]}"))
+unset IFS
+
+MAX_LEN=0
+for entry in "${SORTED_SRCS[@]}"; do
+  src="${entry#*::}"
+  (( ${#src} > MAX_LEN )) && MAX_LEN=${#src}
+done
+
+for entry in "${SORTED_SRCS[@]}"; do
+  src="${entry#*::}"
+  dst="${RENAME_MAP[$src]}"
+  printf "  %-*s -> %s\n" "$MAX_LEN" "$src" "$dst"
+done
+
+if ! confirm "Proceed with these changes?"; then
+  echo "Aborted."
+  exit 0
+fi
+
+for src in "${!RENAME_MAP[@]}"; do
+  dst="${RENAME_MAP[$src]}"
+  if [[ "$DRY_RUN" -eq 1 ]]; then
+    echo "[DRY-RUN] mv -- '$src' '$dst'"
+  else
+    mv -- "$src" "$dst"
+  fi
+done
+
+echo "Done."
