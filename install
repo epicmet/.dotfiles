@@ -106,7 +106,10 @@ install_deps_arch() {
     fuse2 \
     fuse2fs \
     obsidian \
-    evince
+    evince \
+    unrar \
+    vlc \
+    vlc-plugin-ffmpeg
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/paru.git "$HOME/Software/paru" --depth=1
