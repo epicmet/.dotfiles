@@ -94,6 +94,8 @@ alias openp='(){open 0.0.0.0:$1}'
 alias yw='yarn workspace'
 alias tp='trash-put'
 alias ..='cd ..'
+alias rm='rm -v'
+alias mv='mv -v'
 
 if command bat --version &> /dev/null; then
   alias cat='bat'
