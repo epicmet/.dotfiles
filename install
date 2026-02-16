@@ -109,7 +109,8 @@ install_deps_arch() {
     evince \
     unrar \
     vlc \
-    vlc-plugin-ffmpeg
+    vlc-plugin-ffmpeg \
+    dnsutils
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/paru.git "$HOME/Software/paru" --depth=1
