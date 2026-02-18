@@ -117,3 +117,6 @@ Upsert
 upsert
 ShahinClient/!
 struct
+Javascript
+Zod
+zod
