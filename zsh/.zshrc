@@ -124,14 +124,6 @@ fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-if command -v kubectl 2>&1 >/dev/null; then
-  source <(kubectl completion zsh)
-fi
-
-if command -v npm 2>&1 >/dev/null; then
-  source <(npm completion --loglevel=error)
-fi
-
 # Edit the current prompt in $EDITOR
 autoload -z edit-command-line
 zle -N edit-command-line # Emacs style
@@ -154,6 +146,14 @@ fi
 
 if [[ -f "$HOME/.private_env" ]]; then
   source ~/.private_env
+fi
+
+if command -v kubectl 2>&1 >/dev/null; then
+  source <(kubectl completion zsh)
+fi
+
+if command -v npm 2>&1 >/dev/null; then
+  source <(npm completion --loglevel=error)
 fi
 
 # Cargo env
