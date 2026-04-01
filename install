@@ -110,7 +110,8 @@ install_deps_arch() {
     unrar \
     vlc \
     vlc-plugin-ffmpeg \
-    dnsutils
+    dnsutils \
+    man-pages
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/paru.git "$HOME/Software/paru" --depth=1
