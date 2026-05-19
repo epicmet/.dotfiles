@@ -6,6 +6,11 @@ return {
       'williamboman/mason-lspconfig.nvim', -- This is needed for the 'mason-tool-installer' to find the lsps
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       {
+        'chrisgrieser/nvim-lsp-endhints',
+        event = 'LspAttach',
+        opts = {}, -- required, even if empty
+      },
+      {
         'folke/lazydev.nvim',
         ft = 'lua',
         opts = {
@@ -26,6 +31,17 @@ return {
       local schemastore = require('schemastore')
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+      local ts_ls_inlay_hints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      }
+
       local servers = {
         lua_ls = true,
         dockerls = true,
@@ -33,6 +49,14 @@ return {
         gopls = true,
         ts_ls = {
           single_file_support = true,
+          settings = {
+            typescript = {
+              inlayHints = ts_ls_inlay_hints,
+            },
+            javascript = {
+              inlayHints = ts_ls_inlay_hints,
+            },
+          },
         },
         ruff = true,
         pylsp = true,
