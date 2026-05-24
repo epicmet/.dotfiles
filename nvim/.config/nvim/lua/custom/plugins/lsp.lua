@@ -134,14 +134,6 @@ return {
             conform.format({ bufnr = 0, lsp_fallback = true, quiet = true })
           end, { buffer = 0 })
 
-          -- disabling some of lsp-defaults
-          vim.keymap.del('n', 'grn')
-          vim.keymap.del('n', 'gra')
-          vim.keymap.del('n', 'grr')
-          vim.keymap.del('n', 'gri')
-          vim.keymap.del('n', 'grt')
-          vim.keymap.del('n', 'gO')
-
           local tb = require('telescope.builtin')
           vim.keymap.set('n', 'gd', tb.lsp_definitions, { buffer = 0 })
           vim.keymap.set('n', 'gr', tb.lsp_references, { buffer = 0 })
@@ -155,6 +147,14 @@ return {
 
           vim.keymap.set('n', '<space>cr', vim.lsp.buf.rename, { buffer = 0 })
           vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, { buffer = 0 })
+
+          -- disabling some of lsp-defaults
+          pcall(vim.keymap.del, 'n', 'grn')
+          pcall(vim.keymap.del, 'n', 'grr')
+          pcall(vim.keymap.del, 'n', 'gri')
+          pcall(vim.keymap.del, 'n', 'grt')
+          pcall(vim.keymap.del, 'n', 'gO')
+          pcall(vim.keymap.del, 'n', 'gra')
 
           if client.supports_method('textDocument/formatting') then
             vim.api.nvim_create_autocmd('BufWritePre', {
