@@ -47,17 +47,18 @@ return {
         dockerls = true,
         bashls = true,
         gopls = true,
-        ts_ls = {
-          single_file_support = true,
-          settings = {
-            typescript = {
-              inlayHints = ts_ls_inlay_hints,
-            },
-            javascript = {
-              inlayHints = ts_ls_inlay_hints,
-            },
-          },
-        },
+        -- ts_ls = {
+        --   single_file_support = true,
+        --   settings = {
+        --     typescript = {
+        --       inlayHints = ts_ls_inlay_hints,
+        --     },
+        --     javascript = {
+        --       inlayHints = ts_ls_inlay_hints,
+        --     },
+        --   },
+        -- },
+        tsgo = true,
         ruff = true,
         pylsp = true,
         jsonls = {
