@@ -133,6 +133,14 @@ return {
             conform.format({ bufnr = 0, lsp_fallback = true, quiet = true })
           end, { buffer = 0 })
 
+          -- disabling some of lsp-defaults
+          vim.keymap.del('n', 'grn')
+          vim.keymap.del('n', 'gra')
+          vim.keymap.del('n', 'grr')
+          vim.keymap.del('n', 'gri')
+          vim.keymap.del('n', 'grt')
+          vim.keymap.del('n', 'gO')
+
           local tb = require('telescope.builtin')
           vim.keymap.set('n', 'gd', tb.lsp_definitions, { buffer = 0 })
           vim.keymap.set('n', 'gr', tb.lsp_references, { buffer = 0 })
