@@ -60,6 +60,7 @@ install_deps_arch() {
     neovim \
     tmux \
     tree-sitter \
+    tree-sitter-cli \
     zsh \
     lua \
     luarocks \
