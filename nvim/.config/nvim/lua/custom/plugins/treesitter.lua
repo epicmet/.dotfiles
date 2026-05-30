@@ -13,7 +13,6 @@ return {
       'go',
       'toml',
       'json',
-      'jsonc',
       'yaml',
       'css',
       'scss',
