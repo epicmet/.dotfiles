@@ -1,4 +1,10 @@
 return {
   'nvim-lualine/lualine.nvim',
-  opts = {},
+  opts = {
+    options = {
+      disabled_filetypes = {
+        'TelescopePrompt',
+      },
+    },
+  },
 }
