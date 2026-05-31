@@ -112,7 +112,9 @@ install_deps_arch() {
     vlc \
     vlc-plugin-ffmpeg \
     dnsutils \
-    man-pages
+    man-pages \
+    libxml2-legacy \
+    qalculate-gtk
 
   mkdir -p "$HOME/Software"
   git clone https://aur.archlinux.org/paru.git "$HOME/Software/paru" --depth=1
