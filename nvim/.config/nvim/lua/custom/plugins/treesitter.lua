@@ -3,7 +3,7 @@ return {
   lazy = false,
   build = ':TSUpdate',
   config = function()
-    require('nvim-treesitter').install({
+    local list = {
       'tsx',
       'typescript',
       'gitignore',
@@ -31,6 +31,15 @@ return {
       'markdown',
       'markdown_inline',
       'regex',
+    }
+
+    require('nvim-treesitter').install(list):wait()
+
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = list,
+      callback = function()
+        vim.treesitter.start()
+      end,
     })
   end,
 }
