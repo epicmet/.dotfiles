@@ -137,6 +137,18 @@ return {
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
+          vim.diagnostic.config({
+            virtual_lines = true,
+            jump = {
+              on_jump = function(_diagnostic)
+                vim.diagnostic.open_float({
+                  scope = 'cursor',
+                  focus = false,
+                })
+              end,
+            },
+          })
+
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if not client then return end
 
@@ -158,8 +170,14 @@ return {
           vim.keymap.set('n', 'gy', tb.lsp_type_definitions, { buffer = 0 })
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
           vim.keymap.set('n', 'S', vim.lsp.buf.signature_help, { buffer = 0 })
-          vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, { buffer = 0 })
-          vim.keymap.set('n', ']g', vim.diagnostic.goto_next, { buffer = 0 })
+          vim.keymap.set('n', '[g', function()
+            vim.diagnostic.jump({ count = -1 })
+            vim.diagnostic.open_float()
+          end, { buffer = 0 })
+          vim.keymap.set('n', ']g', function()
+            vim.diagnostic.jump({ count = 1, enabled = true })
+            vim.diagnostic.open_float()
+          end, { buffer = 0 })
 
           vim.keymap.set('n', '<space>cr', vim.lsp.buf.rename, { buffer = 0 })
           vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, { buffer = 0 })
