@@ -80,7 +80,7 @@ return {
           grouped = true,
           previewer = false,
           initial_mode = 'normal',
-          layout_config = { height = 40 },
+          layout_config = { height = 40, width = 100 },
         })
       end)
 
