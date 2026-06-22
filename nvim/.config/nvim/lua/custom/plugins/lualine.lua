@@ -4,6 +4,7 @@ return {
     options = {
       disabled_filetypes = {
         'TelescopePrompt',
+        'harpoon-menu',
       },
     },
   },
